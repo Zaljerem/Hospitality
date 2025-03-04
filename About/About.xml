@@ -38,6 +38,7 @@ Hospitality should be loaded as late as possible in the load order.
 		<li>Ludeon.RimWorld</li>
 		<li>Ludeon.RimWorld.Royalty</li>
 		<li>brrainz.harmony</li>
+		<li>avilmask.NonUnoPinata</li>
 	</loadAfter>
 
 </ModMetaData>
