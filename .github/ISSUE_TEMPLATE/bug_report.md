@@ -7,6 +7,9 @@ assignees: ''
 
 ---
 
+**Note**
+This mod is no longer actively maintained. However, if you're lucky, generous souls may provide updates and fixes. 
+
 **Describe the bug**
 What happened?
 
@@ -28,5 +31,3 @@ Paste it here
 
 **Screenshots**
 If you think it helps, add screenshots to help explain the problem.
-
-Fixing bugs takes a lot of time. Please consider [becoming a patron](https://www.patreon.com/orionmods) to support development.
