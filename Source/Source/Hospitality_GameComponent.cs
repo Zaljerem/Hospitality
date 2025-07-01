@@ -21,7 +21,20 @@ namespace Hospitality
 			ApplyFoodFilters(defaultFoodRestriction);
 		}
 
-		public override void ExposeData()
+        public override void LoadedGame()
+		{
+            base.LoadedGame();
+
+            // Iterate all maps and call ForceImmediateUpdate
+            foreach (var map in Find.Maps)
+            {
+                var mapComp = map.GetComponent<Hospitality_MapComponent>();
+                mapComp?.RelationsCache.ForceImmediateUpdate();
+            }
+        }
+
+
+        public override void ExposeData()
 		{
 			// Exposed, so it doesn't give the compressed away warning
 			Scribe_Deep.Look(ref defaultFoodRestriction, "defaultFoodRestriction");

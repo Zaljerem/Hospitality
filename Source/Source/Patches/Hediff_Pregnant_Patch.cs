@@ -10,10 +10,10 @@ namespace Hospitality.Patches;
 public class Hediff_Pregnant_Patch
 {
     [HarmonyPatch(typeof(Hediff_Pregnant), nameof(Hediff_Pregnant.TickInterval))]
-    public static class Hediff_Pregnant_TickInterval_Patch
+    public class TickInterval
     {
         [HarmonyPrefix]
-        public static bool Prefix(ref Hediff_Pregnant __instance)
+        public static bool Postfix(ref Hediff_Pregnant __instance)
         {
             return __instance?.pawn?.IsGuest() != true;
         }

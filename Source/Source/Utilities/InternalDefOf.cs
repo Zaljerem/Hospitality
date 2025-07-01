@@ -9,15 +9,6 @@ namespace Hospitality.Utilities
     [RimWorld.DefOf]
     public static class InternalDefOf
     {
-        [MayRequireIdeology]
-        public static PreceptDef Nudity_Male_UncoveredGroinChestOrHairDisapproved;
-        [MayRequireIdeology]
-        public static PreceptDef Nudity_Male_UncoveredGroinChestHairOrFaceDisapproved;
-        [MayRequireIdeology]
-        public static PreceptDef Nudity_Female_UncoveredGroinChestOrHairDisapproved;
-        [MayRequireIdeology]
-        public static PreceptDef Nudity_Female_UncoveredGroinChestHairOrFaceDisapproved;
-
         [MayRequire("CETeam.CombatExtended")]
         public static ThingDef CE_Apparel_Backpack;
 

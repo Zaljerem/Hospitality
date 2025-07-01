@@ -83,7 +83,9 @@ namespace Hospitality
             Multiplayer.guestFields?.Watch(comp);
 
             // If the lord is not on the map it's invalid!
-            if (comp?.lord != null && comp.lord.ownedPawns.Contains(pawn) && pawn.Map.lordManager.lords.Contains(comp.lord))
+            //if (comp?.lord != null && comp.lord.ownedPawns.Contains(pawn) && pawn.Map.lordManager.lords.Contains(comp.lord))
+                       
+            if (comp?.lord != null)
             {
                 listingStandard.Gap();
                 string labelStay = "AreaToStay".Translate();
@@ -100,7 +102,7 @@ namespace Hospitality
 
                 var rectImproveRelationship = listingStandard.GetRect(Text.LineHeight);
                 DialogUtility.CheckboxLabeled(listingStandard, "ImproveRelationship".Translate(), ref tryImprove, rectImproveRelationship, false, txtImproveTooltip);
-                
+
                 var rectMakeFriends = listingStandard.GetRect(Text.LineHeight);
                 DialogUtility.CheckboxLabeled(listingStandard, "MakeFriends".Translate(), ref tryMakeFriends, rectMakeFriends, false, txtMakeFriendsTooltip);
 

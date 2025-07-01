@@ -57,8 +57,14 @@ public class JobGiver_Relax : ThinkNode_JobGiver
             return pawn.CurJob;
         }
 
+        if (pawn.reading == null)
+        {
+            //Log.Message($"Instantiating reading component for {pawn.LabelShort}");
+            pawn.reading = new Pawn_ReadingTracker(pawn);
+        }
+
         if (pawn.needs == null) Log.ErrorOnce(pawn.LabelShort + " has no needs", 3463 + pawn.thingIDNumber);
-        if (pawn.reading == null) Log.ErrorOnce(pawn.LabelShort + " has no reading component", 3245 + pawn.thingIDNumber); // ADDED
+        //if (pawn.reading == null) Log.ErrorOnce(pawn.LabelShort + " has no reading component", 3245 + pawn.thingIDNumber); // ADDED
         if (pawn.needs.joy == null) Log.ErrorOnce(pawn.LabelShort + " has no joy need", 8585 + pawn.thingIDNumber);
         if (pawn.skills == null) Log.ErrorOnce(pawn.LabelShort + " has no skills", 22352 + pawn.thingIDNumber);
         if (pawn.GetTimeAssignment() == null) Log.ErrorOnce(pawn.LabelShort + " has no time assignments", 74564 + pawn.thingIDNumber);

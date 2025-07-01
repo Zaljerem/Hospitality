@@ -1,5 +1,4 @@
 using System.Linq;
-using System.Collections.Generic;
 using Hospitality.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -37,7 +36,7 @@ public class JobGiver_ScroungeFood : ThinkNode_JobGiver
         guestComp.lastFoodCheckTick = GenTicks.TicksGame + 500; // Recheck ever x ticks
 
         var canManipulateTools = guest.RaceProps.ToolUser && guest.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation);
-        var food = canManipulateTools ? BestFoodInInventory(guest, guest, out var dummy) : null;
+        var food = canManipulateTools ? BestFoodInInventory(guest, guest) : null;
         if (food != null) return null;
 
         var pressure = guest.needs.food.CurCategory switch
@@ -59,7 +58,7 @@ public class JobGiver_ScroungeFood : ThinkNode_JobGiver
         //Log.Message($"{guest.LabelCap} tried to find scroungable food. Found {target?.Label}. pressure = {pressure} maxStealOpinion = {maxStealOpinion} swipe = {swipe}");
         if (target == null) return null;
 
-        food = BestFoodInInventory(target, guest, out var mood);
+        food = BestFoodInInventory(target, guest);
         if (food == null) return null;
         var amount = GetAmount(food);
         return new Job(swipe ? InternalDefOf.SwipeFood : InternalDefOf.ScroungeFood, target, food) { overeat = swipe, count = amount }; // overeat stores swiping
@@ -78,44 +77,28 @@ public class JobGiver_ScroungeFood : ThinkNode_JobGiver
         if (targetPawn != null) return targetPawn;
         targetPawn = guest.MapHeld.lordManager.lords.Where(l => l != lord).Select(l => TryFindGroupPawn(guest, maxStealOpinion, lord)).FirstOrDefault();
         if (targetPawn != null) return targetPawn;
-        targetPawn = TryFindPawn(guest, maxStealOpinion, guest.MapHeld.mapPawns.pawnsSpawned);
+        targetPawn = guest.MapHeld.mapPawns.pawnsSpawned.FirstOrDefault(p => Qualifies(p, guest, maxStealOpinion));
         return targetPawn;
     }
 
     private static Pawn TryFindGroupPawn(Pawn guest, int maxStealOpinion, Lord lord)
     {
-        return TryFindPawn(guest, maxStealOpinion, lord.ownedPawns);
+        return lord.ownedPawns.FirstOrDefault(p => Qualifies(p, guest, maxStealOpinion));
     }
 
-    private static Pawn TryFindPawn(Pawn guest, int maxStealOpinion, IEnumerable<Pawn> pawns)
+    private static bool Qualifies(Pawn target, Pawn guest, int maxStealOpinion)
     {
-        Pawn bestPawn = null;
-        foreach (Pawn p in pawns)
-        {
-            int factor = QualifiesFactor(p, guest, maxStealOpinion);
-            if (factor == 0)
-                continue;
-            if (factor == 2)
-                return p;
-            bestPawn = p;
-        }
-        return bestPawn;
-    }
-
-    // 0 - no, 1 - usable but bad food, 2 - usable
-    private static int QualifiesFactor(Pawn target, Pawn guest, int maxStealOpinion)
-    {
-        if (target == null || guest == null) return 0;
-        if (target == guest) return 0;
-        if (target.inventory == null) return 0;
-        if (target.relations == null) return 0;
-        if (target.InAggroMentalState) return 0;
-        if (target.HostileTo(guest)) return 0;
+        if (target == null || guest == null) return false;
+        if (target == guest) return false;
+        if (target.inventory == null) return false;
+        if (target.relations == null) return false;
+        if (target.InAggroMentalState) return false;
+        if (target.HostileTo(guest)) return false;
 
         var awake = target.Awake();
         if (guest.relations != null)
         {
-            if (!awake && guest.relations.OpinionOf(target) > maxStealOpinion) return 0;
+            if (!awake && guest.relations.OpinionOf(target) > maxStealOpinion) return false;
         }
 
         if (target.relations != null)
@@ -124,45 +107,27 @@ public class JobGiver_ScroungeFood : ThinkNode_JobGiver
             if (target.story?.traits != null)
             {
                 if (target.story.traits.HasTrait(TraitDefOf.Kind)) minAwakeOpinion -= 35;
-                if (target.story.traits.HasTrait(TraitDefOf.Greedy)) minAwakeOpinion += 50;
+                if (target.story.traits.HasTrait(TraitDefOf.Kind)) minAwakeOpinion += 50;
             }
 
-            if (awake && target.relations.OpinionOf(guest) < minAwakeOpinion) return 0;
+            if (awake && target.relations.OpinionOf(guest) < minAwakeOpinion) return false;
         }
 
-        var food = BestFoodInInventory(target, guest, out var mood);
-        if (food != null)
-            return mood >= 0 ? 2 : 1;
-        return 0;
+        var food = BestFoodInInventory(target, guest);
+        return food != null;
     }
 
-    internal static Thing BestFoodInInventory(Pawn holder, Pawn eater, out float mood)
+    internal static Thing BestFoodInInventory(Pawn holder, Pawn eater)
     {
-        mood = -100;
         if (holder.inventory == null) return null;
 
         var innerContainer = holder.inventory.innerContainer;
-        Thing usableThing = null;
         for (var i = 0; i < innerContainer.Count; i++)
         {
             var thing = innerContainer.innerList[i];
-            if (thing.def.IsNutritionGivingIngestible && thing.IngestibleNow && eater.WillEat(thing, eater)
-                && (int)thing.def.ingestible.preferability >= (int)FoodPreferability.RawBad && !thing.def.IsDrug)
-            {
-                float thingMood = FoodUtility.MoodFromIngesting(eater, thing, thing.def);
-                if (thingMood >= 0)
-                {
-                    mood = thingMood;
-                    return thing;
-                }
-                if (thingMood > mood)
-                {
-                    mood = thingMood;
-                    usableThing = thing;
-                }
-            }
+            if (thing.def.IsNutritionGivingIngestible && thing.IngestibleNow && eater.WillEat(thing, eater) && (int)thing.def.ingestible.preferability >= (int)FoodPreferability.RawBad && !thing.def.IsDrug) return thing;
         }
 
-        return usableThing;
+        return null;
     }
 }

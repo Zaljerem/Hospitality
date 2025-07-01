@@ -13,15 +13,16 @@ internal static class SpawnGroupUtility
 {
     public static void CheckVisitorsValid(List<Pawn> visitors)
     {
-        foreach (var visitor in visitors)
+        for (int i = visitors.Count - 1; i >= 0; i--)
         {
-            if (visitor.TryGetComp<CompGuest>() != null && !visitor.Discarded && !visitor.Dead && !visitor.NonHumanlikeOrWildMan()) continue;
+            var visitor = visitors[i];
+            if (visitor.TryGetComp<CompGuest>() != null && !visitor.Discarded && !visitor.Dead && !visitor.NonHumanlikeOrWildMan())
+                continue;
 
             try
             {
                 var humanlike = visitor.def.race.Humanlike ? "humanlike" : "not humanlike";
                 var modName = visitor.def.modContentPack == null ? "vanilla (?)" : visitor.def.modContentPack.Name;
-
                 Log.Error($"Spawned visitor without GuestComp: {visitor.def.defName} - {humanlike} - {modName}");
             }
             catch
@@ -30,11 +31,12 @@ internal static class SpawnGroupUtility
             }
             finally
             {
-                visitors.Remove(visitor);
+                visitors.RemoveAt(i);
                 visitor.Destroy();
             }
         }
     }
+
 
     public static void GenerateNewGearFor(Pawn pawn, int mapTile)
     {

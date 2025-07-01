@@ -26,7 +26,7 @@ namespace Hospitality
             var silver = vendingMachine?.GetDirectlyHeldThings()?.FirstOrDefault();
             if (silver != null)
             {
-                if (StoreUtility.TryFindBestBetterStorageFor(silver, pawn, pawn.Map, StoreUtility.CurrentStoragePriorityOf(silver), pawn.Faction, out _, out _))
+                if (StoreUtility.TryFindBestBetterStorageFor(silver, pawn, pawn.Map, StoreUtility.CurrentStoragePriorityOf(silver, false), pawn.Faction, out _, out _))
                 {
                     return JobMaker.MakeJob(InternalDefOf.VendingMachine_EmptyVendingMachine, t, silver);
                 }

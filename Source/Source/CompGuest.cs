@@ -80,6 +80,7 @@ public class CompGuest : ThingComp
         Scribe_References.Look(ref guestArea_int, "guestArea");
         Scribe_References.Look(ref shoppingArea_int, "shoppingArea");
         Scribe_References.Look(ref bed, "bed");
+        Scribe_References.Look(ref lord, "lord");
         boughtItems ??= [];
 
         if (Scribe.mode == LoadSaveMode.PostLoadInit)
@@ -90,7 +91,7 @@ public class CompGuest : ThingComp
             // NOTE: Careful! All pawns have this component
 
             // Can't save lord (IExposable), so we just gotta find it each time
-            lord = Pawn.GetLord();
+            //lord = Pawn.GetLord();
 
             // Bed doesn't store owners
             if (bed != null && !bed.Owners().Contains(Pawn))
@@ -154,9 +155,9 @@ public class CompGuest : ThingComp
         if (clearLord) lord = null;
     }
 
-    public override void PostDeSpawn(Map map, DestroyMode mode)
+    public override void PostDeSpawn(Map map, DestroyMode mode = DestroyMode.Vanish)
     {
-        base.PostDeSpawn(map, mode);
+        base.PostDeSpawn(map);
         map.GetMapComponent()?.PresentGuests.Remove(Pawn);
     }
 

@@ -23,19 +23,8 @@ public static class ItemUtility
     public static void PocketHeadgear(this Pawn pawn)
     {
         if (pawn?.apparel?.WornApparel == null || pawn.inventory?.innerContainer == null) return;
-        if (ModsConfig.IdeologyActive)
-        {
-            // Don't do it when ideology requires covered hair or face.
-            if (pawn.gender == Gender.Male
-                && (pawn.ideo?.Ideo?.HasPrecept(InternalDefOf.Nudity_Male_UncoveredGroinChestOrHairDisapproved) == true
-                    || pawn.ideo?.Ideo?.HasPrecept(InternalDefOf.Nudity_Male_UncoveredGroinChestHairOrFaceDisapproved) == true))
-                return;
-            if (pawn.gender == Gender.Female
-                && (pawn.ideo?.Ideo?.HasPrecept(InternalDefOf.Nudity_Female_UncoveredGroinChestOrHairDisapproved) == true
-                    || pawn.ideo?.Ideo?.HasPrecept(InternalDefOf.Nudity_Female_UncoveredGroinChestHairOrFaceDisapproved) == true))
-                return;
-            if (pawn.ideo?.Ideo?.HasPrecept(InternalDefOf.VME_Anonymity_Required) == true) return;
-        }
+        // Don't do it when the pawn wants to stay anonymous
+        if (ModsConfig.IdeologyActive && pawn.ideo?.Ideo?.HasPrecept(InternalDefOf.VME_Anonymity_Required) == true) return;
 
         var headgear = pawn.apparel.WornApparel.Where(CoversHead).ToArray();
         foreach (var apparel in headgear)

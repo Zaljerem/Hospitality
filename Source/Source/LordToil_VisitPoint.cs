@@ -247,13 +247,17 @@ internal class LordToil_VisitPoint : LordToil
         if (pawn.needs?.mood == null) return 0;
 
         const float defaultMood = 0.5f;
-        var initialMood = Data.visitorMoods.GetValueOrDefault(pawn.thingIDNumber, defaultMood);
+        float initialMood;
+        if (!Data.visitorMoods.TryGetValue(pawn.thingIDNumber, out initialMood))
+        {
+            initialMood = defaultMood;
+        }
 
-        var increase = pawn.needs.mood.CurLevel - initialMood;
-        var score = Mathf.Lerp(increase * 2.75f, pawn.needs.mood.CurLevel * 1.35f, 0.5f);
-        //Log.Message(pawn.NameStringShort + " increase: " + (increase * 2.75f) + " mood: " + (pawn.needs.mood.CurLevel * 1.35f) + " score: " + score);
+        float increase = pawn.needs.mood.CurLevel - initialMood;
+        float score = Mathf.Lerp(increase * 2.75f, pawn.needs.mood.CurLevel * 1.35f, 0.5f);
         return score;
     }
+
 
     public override void UpdateAllDuties()
     {

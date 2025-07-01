@@ -57,7 +57,13 @@ namespace Hospitality.Utilities
         {
             foreach (var def in DefDatabase<ChemicalDef>.AllDefsListForReading.Where(x => x.addictionHediff == null))
             {
-                LogMisconfiguration(def, $"The ChemicalDef {def.defName} has no addictionHediff. Remove the ChemicalDef or add an addiction hediff. Otherwise this will cause random groups and raids to not spawn.");
+                if (!def.canBeAddicted) {
+                    continue;
+                }
+                else
+                {
+                    LogMisconfiguration(def, $"The ChemicalDef {def.defName} has no addictionHediff. Remove the ChemicalDef or add an addiction hediff. Otherwise this will cause random groups and raids to not spawn.");
+                }
             }
         }
 

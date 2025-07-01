@@ -36,16 +36,30 @@ namespace Hospitality.Utilities
 			return set;
 		}
 
-		private void TryUpdate()
+        public void ForceImmediateUpdate()
+        {
+            lastUpdateTick = 0; // Forces TryUpdate to succeed
+            TryUpdate();
+
+            foreach (var pawn in Map.mapPawns.AllPawns)
+            {
+                if (pawn.IsGuest() && pawn.CompGuest() != null)
+                {
+                    GetSetFor(pawn); // This will call set.TryUpdate() for each guest
+                }
+            }
+        }
+
+        private void TryUpdate()
 		{
 			if (Current.Game.tickManager.TicksGame <= lastUpdateTick + 50) return;
 			lastUpdateTick = Current.Game.tickManager.TicksGame;
 
 			friendsRequired = GetFriendsRequired();
 			UpdateColonistsFromBase();
-		}
+		}      
 
-		private void UpdateColonistsFromBase()
+        private void UpdateColonistsFromBase()
 		{
 			colonistsFromBase.Clear();
 			colonistsFromBase.AddRange(Map.mapPawns.FreeColonists.Where(c => !c.IsSlave));
@@ -112,9 +126,9 @@ namespace Hospitality.Utilities
 
 				friendsSeniority = mapComponent.RelationsCache.colonistsFromBase.Where(p => p.royalty?.MostSeniorTitle != null && RelationsUtility.PawnsKnowEachOther(Pawn, p) && Pawn.relations.OpinionOf(p) >= requiredOpinion)
 					.Sum(pawn => pawn.royalty.MostSeniorTitle.def.seniority + 100); // seriority can be 0!
-			}
+			}         
 
-			private static int GetRelationValue(Pawn pawn, Pawn guest)
+            private static int GetRelationValue(Pawn pawn, Pawn guest)
 			{
 				return GuestUtility.IsRelated(pawn, guest) ? 2 : 1;
 			}

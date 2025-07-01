@@ -923,26 +923,44 @@ public static class GuestUtility
 
     public static void GiveLordToRoguePawn(Pawn pawn)
     {
-        var comp = pawn.CompGuest();
-        if (comp == null || !comp.wasDowned || pawn?.jobs == null || pawn.Dead || pawn.Map == null || !pawn.RaceProps.Humanlike || pawn.IsEntity) return; // I don't think this ever happens...
-
-        // Don't use this: Too generic, could conflict with all kinds of behaviors?
-        //if(pawn.CurJob?.def == JobDefOf.Goto && pawn.CurJob.exitMapOnArrival)
-
-        // This doesn't work anymore, recovered guests don't get a duty
-        if (pawn.mindState.duty?.def == DutyDefOf.ExitMapBestAndDefendSelf) return;
-
-        var lords = pawn.Map.lordManager.lords.Where(lord => lord.CurLordToil is LordToil_VisitPoint && lord.faction == pawn.Faction).ToArray();
-        if (lords.Any())
+        try
         {
-            JoinLord(lords.RandomElement(), pawn);
-        }
-        else CreateLordForPawn(pawn);
+            if (pawn == null) return;
 
-        comp.wasDowned = false;
-        pawn.jobs.StopAll();
-        pawn.pather.StopDead();
+            var comp = pawn.CompGuest();
+            if (comp == null || !comp.wasDowned || pawn?.jobs == null || pawn.Dead || pawn.Map == null || !pawn.RaceProps.Humanlike || pawn.IsEntity)
+                return;
+
+            if (pawn.mindState?.duty?.def == DutyDefOf.ExitMapBestAndDefendSelf)
+                return;
+
+            var lordManager = pawn.Map?.lordManager;
+            if (lordManager == null) return;
+
+            var lords = lordManager.lords?
+                .Where(lord => lord != null && lord.CurLordToil is LordToil_VisitPoint && lord.faction == pawn.Faction)
+                .ToArray();
+
+            if (lords != null && lords.Length > 0)
+            {
+                JoinLord(lords.RandomElement(), pawn);
+            }
+            else
+            {
+                CreateLordForPawn(pawn);
+            }
+
+            comp.wasDowned = false;
+
+            pawn.jobs?.StopAll();
+            pawn.pather?.StopDead();
+        }
+        catch (Exception ex)
+        {
+            Log.Error($"[Hospitality] Failed to give lord to rogue pawn {pawn?.LabelShort ?? "null"}: {ex}");
+        }
     }
+
 
     public static void CheckForRogueGuests(Map map)
     {
@@ -958,13 +976,50 @@ public static class GuestUtility
 
     private static void CreateLordForPawn([NotNull] Pawn pawn)
     {
-        Log.Message($"Creating a temporary lord for {pawn.Label} of faction {(pawn.Faction != null ? pawn.Faction.Name : "null")}.");
-        var desc = pawn.CompGuest().rescued ? "RescuedPawnBecameGuest" : "DownedPawnBecameGuest";
-        Find.LetterStack.ReceiveLetter("LetterLabelPawnBecameGuest".Translate(new NamedArgument { arg = pawn, label = "PAWN" }), desc.Translate(new NamedArgument { arg = pawn, label = "PAWN" }),
-            LetterDefOf.NeutralEvent, pawn, pawn.Faction);
-        var duration = (int)(Rand.Range(0.5f, 1f) * GenDate.TicksPerDay);
-        IncidentWorker_VisitorGroup.CreateLord(pawn.Faction, pawn.Position, [pawn], pawn.Map, false, false, duration);
+        if (pawn == null || pawn.Map == null || pawn.Position == IntVec3.Invalid)
+        {
+            Log.Warning("[Hospitality] Cannot create lord: pawn, map, or position is invalid.");
+            return;
+        }
+
+        var compGuest = pawn.CompGuest();
+        if (compGuest == null)
+        {
+            Log.Warning($"[Hospitality] Cannot create lord: {pawn.LabelShort} has no guest comp.");
+            return;
+        }
+
+        var factionName = pawn.Faction?.Name ?? "null";
+        Log.Message($"[Hospitality] Creating a temporary lord for {pawn.Label} of faction {factionName}.");
+
+        try
+        {
+            string descKey = compGuest.rescued ? "RescuedPawnBecameGuest" : "DownedPawnBecameGuest";
+            TaggedString label = "LetterLabelPawnBecameGuest".Translate(pawn.Named("PAWN"));
+            TaggedString text = descKey.Translate(pawn.Named("PAWN"));
+
+            Find.LetterStack.ReceiveLetter(label, text, LetterDefOf.NeutralEvent, pawn, pawn.Faction);
+
+            int duration = (int)(Rand.Range(0.5f, 1f) * GenDate.TicksPerDay);
+
+            // Safeguard against null faction
+            if (pawn.Faction != null)
+            {
+                IncidentWorker_VisitorGroup.CreateLord(pawn.Faction, pawn.Position, [pawn], pawn.Map, false, false, duration);
+            }
+            else
+            {
+                Log.Warning($"[Hospitality] Skipped lord creation: {pawn.LabelShort} has no faction.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Log.Error($"[Hospitality] Exception in CreateLordForPawn for {pawn.LabelShort}: {ex}");
+        }
     }
+
+   
+ 
 
     public static bool GuestHasNoLord(Pawn pawn)
     {
@@ -981,22 +1036,49 @@ public static class GuestUtility
 
     private static void JoinLord(Lord lord, Pawn pawn)
     {
-        if (lord.ownedPawns.Contains(pawn))
+        if (pawn == null || lord == null) return;
+
+        var compGuest = pawn.CompGuest();
+        if (compGuest == null)
         {
-            pawn.CompGuest().lord = lord;
+            Log.Warning($"[Hospitality] Cannot join lord: {pawn.LabelShort} has no guest comp.");
             return;
         }
 
-        if (lord.CurLordToil is not LordToil_VisitPoint lordToil) return;
-        Log.Message($"{pawn.LabelShort}: Joined lord of faction {lord.faction?.Name}.");
+        if (lord.ownedPawns.Contains(pawn))
+        {
+            compGuest.lord = lord;
+            return;
+        }
 
-        pawn.Map.GetMapComponent()?.OnGuestJoinedLate(pawn);
+        if (lord.CurLordToil is not LordToil_VisitPoint lordToil)
+        {
+            Log.Warning($"[Hospitality] Cannot join lord: {pawn.LabelShort} - current toil is not VisitPoint.");
+            return;
+        }
 
-        var desc = pawn.CompGuest().rescued ? "RescuedPawnJoinedGroup" : "DownedPawnJoinedGroup";
-        Find.LetterStack.ReceiveLetter("LetterLabelPawnJoinedGroup".Translate(new NamedArgument { arg = pawn, label = "PAWN" }), desc.Translate(new NamedArgument { arg = pawn, label = "PAWN" }),
-            LetterDefOf.NeutralEvent, pawn, pawn.Faction);
-        lordToil.JoinLate(pawn);
+        Log.Message($"[Hospitality] {pawn.LabelShort}: Joining lord of faction {lord.faction?.Name ?? "null"}.");
+
+        try
+        {
+            var mapComp = pawn.Map?.GetMapComponent();
+            mapComp?.OnGuestJoinedLate(pawn);
+
+            string descKey = compGuest.rescued ? "RescuedPawnJoinedGroup" : "DownedPawnJoinedGroup";
+
+            TaggedString label = "LetterLabelPawnJoinedGroup".Translate(pawn.Named("PAWN"));
+            TaggedString text = descKey.Translate(pawn.Named("PAWN"));
+
+            Find.LetterStack.ReceiveLetter(label, text, LetterDefOf.NeutralEvent, pawn, pawn.Faction);
+
+            lordToil.JoinLate(pawn);
+        }
+        catch (Exception ex)
+        {
+            Log.Error($"[Hospitality] Exception while joining lord for {pawn.LabelShort}: {ex}");
+        }
     }
+
 
     public static void ConvertToTrader(this Pawn pawn, bool actAsIfSpawned)
     {

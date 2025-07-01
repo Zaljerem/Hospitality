@@ -331,6 +331,8 @@ public class IncidentWorker_VisitorGroup : IncidentWorker_NeutralGroup
 
         foreach (var pawn in selection)
         {
+            if (pawn.RaceProps?.IsMechanoid == true) continue;            
+
             try
             {
                 if (parms.pawnKind != null) pawn.kindDef = parms.pawnKind;

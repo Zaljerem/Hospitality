@@ -29,7 +29,7 @@ namespace Hospitality
                 defaultCompleteMode = ToilCompleteMode.Never,
                 tickAction = delegate {
                     pawn.rotationTracker.FaceCell(job.GetTarget(TargetIndex.B).Cell);
-                    pawn.GainComfortFromCellIfPossible(60);
+                    pawn.GainComfortFromCellIfPossible(1);
                     ticksSpent++;
                 }
             };
