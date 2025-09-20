@@ -19,7 +19,7 @@ public static class GuestUtility
     public const int InteractIntervalAbsoluteMin = 360; // changed from 120
     public const int MaxOpinionForEnemy = -20;
     public static readonly DutyDef relaxDef = DefDatabase<DutyDef>.GetNamed("Relax");
-    private static readonly TraderKindDef traderKindDef = DefDatabase<TraderKindDef>.GetNamed("Guest");
+    public static readonly TraderKindDef traderKindDef = DefDatabase<TraderKindDef>.GetNamed("Guest");
     private static readonly JobDef therapyJobDef = DefDatabase<JobDef>.GetNamedSilentFail("ReceiveTherapy");
 
     private static readonly string labelRecruitSuccess = "LetterLabelMessageRecruitSuccess".Translate(); // from core

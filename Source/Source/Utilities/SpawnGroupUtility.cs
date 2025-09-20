@@ -119,7 +119,8 @@ internal static class SpawnGroupUtility
                 try
                 {
                     return d is { category: ThingCategory.Item, alwaysHaulable: true } && d.EverStorable(true) && d.thingClass != null && d.thingClass != typeof(MinifiedThing) && !d.thingClass.IsSubclassOf(typeof(MinifiedThing))
-                           && d.tradeability != Tradeability.None && d.GetCompProperties<CompProperties_Hatcher>() == null && !d.WillRotSoon() && (d.thingSetMakerTags == null || !d.thingSetMakerTags.Contains("NotForGuests"));
+                           && d.tradeability != Tradeability.None && d.GetCompProperties<CompProperties_Hatcher>() == null && !d.WillRotSoon() && (d.thingSetMakerTags == null || !d.thingSetMakerTags.Contains("NotForGuests"))
+                           && GuestUtility.traderKindDef.WillTrade(d);
                 }
                 catch (Exception e)
                 {
