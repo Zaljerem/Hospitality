@@ -17,10 +17,10 @@ namespace Hospitality
             this.FailOnDespawnedOrNull(TargetIndex.A);
             this.FailOnAggroMentalState(TargetIndex.A);
             this.FailOnIncapable(PawnCapacityDefOf.Manipulation);
-            Toil toil = GotoPawn(TargetIndex.A);
+            Toil toil = Toils_Goto.Goto(TargetIndex.A, PathEndMode.Touch);
             toil.socialMode = RandomSocialMode.Off;
             yield return toil;
-            Toil finalGoto = GotoPawn(TargetIndex.A);
+            Toil finalGoto = Toils_Goto.Goto(TargetIndex.A, PathEndMode.Touch);
             yield return Toils_Jump.JumpIf(finalGoto, () => !OtherPawn.Awake());
             Toil toil2 = Toils_Interpersonal.WaitToBeAbleToInteract(pawn);
             toil2.socialMode = RandomSocialMode.Off;
@@ -34,29 +34,7 @@ namespace Hospitality
             yield return ItemUtility.TakeToInventory(TargetIndex.B);
 
         }
-
-        public static Toil GotoPawn(TargetIndex targetInd)
-        {
-            var toil = ToilMaker.MakeToil();
-            toil.tickAction = delegate
-            {
-                var actor = toil.actor;
-                var target = actor.jobs.curJob.GetTarget(targetInd);
-
-                if (target != actor.pather.Destination || (!actor.pather.Moving && !actor.CanReachImmediate(target, PathEndMode.Touch)))
-                {
-                    actor.pather.StartPath(target, PathEndMode.Touch);
-                }
-                else if (actor.CanReachImmediate(target, PathEndMode.Touch))
-                {
-                    actor.jobs.curDriver.ReadyForNextToil();
-                }
-            };
-            toil.socialMode = RandomSocialMode.Off;
-            toil.defaultCompleteMode = ToilCompleteMode.Never;
-            return toil;
-        }
-
+        
         public static Toil AskForFood(TargetIndex targetInd, TargetIndex foodInd)
         {
             var toil = ToilMaker.MakeToil("Scrounge food interaction"); ;
