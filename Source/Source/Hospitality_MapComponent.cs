@@ -62,57 +62,85 @@ public class Hospitality_MapComponent : MapComponent
     public void RefreshGuestListTotal()
     {
         PresentLords.Clear();
-        // We look for the job of our lord to determine whether it is a guest group or not.
-        // Now with null checking
+
+        // Add comprehensive null checking for all potential null references
         if (map?.lordManager?.lords != null)
         {
             PresentLords.AddRange(map.lordManager.lords
-                .Where(l => l.LordJob is LordJob_VisitColony visit && !visit.leaving));
+                .Where(l => l != null &&
+                           l.LordJob != null &&
+                           l.LordJob is LordJob_VisitColony visit &&
+                           !visit.leaving));
         }
 
         MainTabWindowUtility.NotifyAllPawnTables_PawnsChanged();
 
         PresentGuests.Clear();
         if (PresentLords.Count > 0)
-            PresentGuests.AddRange(PresentLords.SelectMany(l => l.ownedPawns ?? Enumerable.Empty<Pawn>()));
+        {
+            // Add null checking for lord.ownedPawns as well
+            PresentGuests.AddRange(PresentLords
+                .Where(l => l?.ownedPawns != null)
+                .SelectMany(l => l.ownedPawns)
+                .Where(p => p != null)); // Also ensure individual pawns aren't null
+        }
     }
 
-   
+
 
 
     public void OnLordSpawned(Lord lord)
     {
+        if (lord == null) return;
+
         PresentLords.AddDistinct(lord);
 
         PresentGuests.Clear();
-        PresentGuests.AddRange(PresentLords.SelectMany(l => l.ownedPawns));
+        PresentGuests.AddRange(PresentLords
+            .Where(l => l?.ownedPawns != null)
+            .SelectMany(l => l.ownedPawns)
+            .Where(p => p != null));
     }
 
     public void OnLordDespawned(Lord lord)
     {
+        if (lord == null) return;
+
         PresentLords.Remove(lord);
 
         PresentGuests.Clear();
-        PresentGuests.AddRange(PresentLords.SelectMany(l => l.ownedPawns));
+        PresentGuests.AddRange(PresentLords
+            .Where(l => l?.ownedPawns != null)
+            .SelectMany(l => l.ownedPawns)
+            .Where(p => p != null));
     }
 
     public void OnGuestAdopted(Pawn guest)
     {
+        if (guest == null) return;
         PresentGuests.Remove(guest);
     }
 
     public void OnGuestJoinedLate(Pawn guest)
     {
+        if (guest == null) return;
         PresentGuests.Add(guest);
     }
 
     public void OnWorldLoaded()
     {
-        RefreshGuestListTotal();
-        CheckForCorrectDrugPolicies();
-        ApplyCorrectFoodRestrictions();
-        AddOrRemoveNeedsAsAppropriate();
-        AddDynamicComponents();
+        try
+        {
+            RefreshGuestListTotal();
+            CheckForCorrectDrugPolicies();
+            ApplyCorrectFoodRestrictions();
+            AddOrRemoveNeedsAsAppropriate();
+            AddDynamicComponents();
+        }
+        catch (System.Exception e)
+        {
+            Log.Error($"[Hospitality] Error in OnWorldLoaded: {e}");
+        }
     }
 
     [DebugAction("Pawns", actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
@@ -134,26 +162,60 @@ public class Hospitality_MapComponent : MapComponent
 
     private void AddDynamicComponents()
     {
-        foreach (var pawn in PresentGuests)
+        foreach (var pawn in PresentGuests.ToList()) // ToList to avoid modification during iteration
         {
-            pawn.reading ??= new Pawn_ReadingTracker(pawn);
+            if (pawn?.reading == null)
+            {
+                try
+                {
+                    pawn.reading = new Pawn_ReadingTracker(pawn);
+                }
+                catch (System.Exception e)
+                {
+                    Log.Error($"[Hospitality] Failed to add reading tracker to {pawn}: {e}");
+                }
+            }
         }
     }
 
     private void AddOrRemoveNeedsAsAppropriate()
     {
-        foreach (var pawn in PresentGuests)
+        foreach (var pawn in PresentGuests.ToList())
         {
-            pawn.needs.AddOrRemoveNeedsAsAppropriate();
+            if (pawn?.needs != null)
+            {
+                try
+                {
+                    pawn.needs.AddOrRemoveNeedsAsAppropriate();
+                }
+                catch (System.Exception e)
+                {
+                    Log.Error($"[Hospitality] Failed to update needs for {pawn}: {e}");
+                }
+            }
         }
     }
 
     private void ApplyCorrectFoodRestrictions()
     {
-        foreach (var pawn in PresentGuests)
+        var defaultPolicy = Current.Game?.GetComponent<Hospitality_GameComponent>()?.defaultFoodRestriction;
+
+        foreach (var pawn in PresentGuests.ToList())
         {
-            pawn.foodRestriction ??= new Pawn_FoodRestrictionTracker(pawn);
-            pawn.foodRestriction.CurrentFoodPolicy = Current.Game.GetComponent<Hospitality_GameComponent>().defaultFoodRestriction;
+            if (pawn == null) continue;
+
+            try
+            {
+                pawn.foodRestriction ??= new Pawn_FoodRestrictionTracker(pawn);
+                if (defaultPolicy != null)
+                {
+                    pawn.foodRestriction.CurrentFoodPolicy = defaultPolicy;
+                }
+            }
+            catch (System.Exception e)
+            {
+                Log.Error($"[Hospitality] Failed to set food restriction for {pawn}: {e}");
+            }
         }
     }
 

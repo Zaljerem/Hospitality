@@ -21,23 +21,34 @@ namespace Hospitality.Patches
         [HarmonyPostfix]
         private static void WorldLoadedHook()
         {
-            //foreach (var map in Find.Maps)
-            // {
-            //     map.GetMapComponent().OnWorldLoaded();
-            // }
             foreach (var map in Find.Maps)
             {
                 if (map == null) continue;
-
                 var comp = map.GetMapComponent();
                 if (comp == null)
                 {
                     Log.Warning($"[Hospitality] MapComponent was null during WorldLoadedHook for map: {map}");
                     continue;
                 }
-                comp.OnWorldLoaded();
+
+                try
+                {
+                    comp.OnWorldLoaded();
+                }
+                catch (System.Exception e)
+                {
+                    Log.Error($"[Hospitality] Exception in OnWorldLoaded for map {map}: {e}");
+                }
             }
-            GuestUtility.Initialize();
+
+            try
+            {
+                GuestUtility.Initialize();
+            }
+            catch (System.Exception e)
+            {
+                Log.Error($"[Hospitality] Exception in GuestUtility.Initialize: {e}");
+            }
         }
     }
 }
