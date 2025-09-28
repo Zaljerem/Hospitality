@@ -4,6 +4,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
+using Hospitality.Utilities;
 
 namespace Hospitality.MainTab
 {
@@ -20,7 +21,7 @@ namespace Hospitality.MainTab
             int num1 = 1;
             for (int index = 0; index < allAreas.Count; ++index)
             {
-                if (allAreas[index].AssignableAsAllowed())
+                if (allAreas[index].AssignableAsAllowed() && TDPackAreas.IsAllowed(allAreas[index]))
                     ++num1;
             }
 
@@ -31,7 +32,7 @@ namespace Hospitality.MainTab
             int num2 = 1;
             for (int index = 0; index < allAreas.Count; ++index)
             {
-                if (allAreas[index].AssignableAsAllowed())
+                if (allAreas[index].AssignableAsAllowed() && TDPackAreas.IsAllowed(allAreas[index]))
                 {
                     float num3 = num2 * width;
                     DoAreaSelector(new Rect(rect.x + num3, rect.y, width, rect.height), p, allAreas[index], getArea, setArea);

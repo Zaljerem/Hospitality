@@ -834,7 +834,7 @@ public static class GuestUtility
 
     public static IEnumerable<Area> GetAreas(Map map)
     {
-        return map.areaManager.AllAreas.Where(a => a.AssignableAsAllowed());
+        return map.areaManager.AllAreas.Where(a => a.AssignableAsAllowed() && TDPackAreas.IsAllowed(a));
     }
 
     // From RimWorld.AreaAllowedGUI, modified
