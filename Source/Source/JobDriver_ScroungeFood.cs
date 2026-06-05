@@ -10,7 +10,23 @@ namespace Hospitality
     {
         private Pawn OtherPawn => job.GetTarget(TargetIndex.A).Pawn;
 
-        public override bool TryMakePreToilReservations(bool errorOnFailed) => true;
+        //public override bool TryMakePreToilReservations(bool errorOnFailed) => true;
+
+        public override bool TryMakePreToilReservations(bool errorOnFailed)
+        {
+            // Reserve the target pawn (A) if needed
+            //if (!pawn.Reserve(job.GetTarget(TargetIndex.A), job, 1, -1, null, errorOnFailed))
+            //    return false;
+
+            // Reserve the food (B)
+            if (job.GetTarget(TargetIndex.B).IsValid)
+            {
+                if (!pawn.Reserve(job.GetTarget(TargetIndex.B), job, 1, job.count, null, errorOnFailed))
+                    return false;
+            }
+
+            return true;
+        }
 
         public override IEnumerable<Toil> MakeNewToils()
         {

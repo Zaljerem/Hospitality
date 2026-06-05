@@ -14,16 +14,15 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4494-beta" />   
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4494-beta" />
+     <PackageReference Include="Lib.Harmony" ExcludeAssets="runtime">
+            <Version>2.4.2</Version>
+        </PackageReference>	   
 	<Publicize Include="Assembly-CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\..\Users\conse\Desktop\!16\0Harmony.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="0MultiplayerAPI">
-      <HintPath>..\..\..\..\..\Users\conse\Desktop\0MultiplayerAPI.dll</HintPath>
+      <HintPath>..\..\..\..\..\Users\conse\Desktop\!Reference Assemblies\0MultiplayerAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

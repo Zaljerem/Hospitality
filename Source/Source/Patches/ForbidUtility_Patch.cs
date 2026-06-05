@@ -15,53 +15,17 @@ namespace Hospitality.Patches
         /// So guests will care
         /// </summary>
         [HarmonyPatch(typeof(ForbidUtility), nameof(ForbidUtility.CaresAboutForbidden))]
-        public class CaresAboutForbidden
+        public static class CaresAboutForbidden
         {
-            private static MethodInfo get_Map = AccessTools.Method(typeof(Thing), "get_Map");
-            private static MethodInfo get_IsPlayerHome = AccessTools.Method(typeof(Map), "get_IsPlayerHome");
-
-            /*
-            IL_001D: ldarg.0
-            IL_001E: callvirt  instance class Verse.Map Verse.Thing::get_Map()
-            IL_0023: callvirt  instance bool Verse.Map::get_IsPlayerHome()
-            IL_0028: brtrue.s  IL_0059 
-            */
-            
-            [HarmonyTranspiler]
-            public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> source)
+            static bool Prefix(Pawn pawn, ref bool __result)
             {
-                var list = source.ToList();
-                int idx = 0;
-
-                for (int i = 0; i < list.Count - 4; i++)
+                if (pawn != null && pawn.IsGuest())
                 {
-                    var inst = list[i];
-
-                    if (inst.opcode != OpCodes.Ldarg_0) continue;
-
-                    // Need to make sure that our next two instructions are calls
-                    var firstMethod = list[i + 1];
-                    var secondMethod = list[i + 2];
-
-                    if (firstMethod.opcode != OpCodes.Callvirt || secondMethod.opcode != OpCodes.Callvirt) continue;
-
-                    // Make sure the following opcode is the branch we expect
-                    var branch = list[i + 3];
-
-                    if (branch.opcode != OpCodes.Brtrue_S) continue;
-
-                    // Make sure our methods are calling the right things
-
-                    if (firstMethod.operand as MethodInfo != get_Map) continue;
-                    if (secondMethod.operand as MethodInfo != get_IsPlayerHome) continue;
-
-                    idx = i;
-                    break;
+                    __result = true;
+                    return false;
                 }
 
-                list.RemoveRange(idx, 4);
-
-                return list;
+                return true;
             }
         }
 
@@ -81,7 +45,8 @@ namespace Hospitality.Patches
             [HarmonyPrefix]
             public static bool Prefix(bool value)
             {
-                if (value && currentToilWorker.IsArrivedGuest(out _))
+                //if (value && currentToilWorker.IsArrivedGuest(out _))
+                if (value && currentToilWorker != null && currentToilWorker.IsArrivedGuest(out _))
                 {
                     return false;
                 }
@@ -92,24 +57,37 @@ namespace Hospitality.Patches
 
         /// <summary>
         /// Area check for guests trying to access things outside their zone.
+        /// Reworked to prefix to try and improve performance
         /// </summary>
         [HarmonyPatch(typeof(ForbidUtility), nameof(ForbidUtility.InAllowedArea))]
-        public class InAllowedArea
+        public static class InAllowedArea_Patch
         {
-            // Think tank
-            // How does vanilla do this for animals, can this be done some other way? >> exactly like this
-            // Could maybe build a hashset of IntVec3 for each pawn for a quick check?
-            // Would transpiling the original method allow for improved performance?
-
-            [HarmonyPostfix]
-            public static void Postfix(IntVec3 c, Pawn forPawn, ref bool __result) 
+            [HarmonyPrefix]
+            public static bool Prefix(IntVec3 c, Pawn forPawn, ref bool __result)
             {
-                if (!__result) return; // Not ok anyway, moving on
-                if (!forPawn.IsArrivedGuest(out var guestComp)) return;
+                if (forPawn == null)
+                    return true;
+
+                if (!forPawn.IsArrivedGuest(out var guestComp))
+                    return true;
 
                 var area = guestComp.GuestArea;
-                if (area == null) return;
-                if (!c.IsValid || !area[c]) __result = false;
+                if (area == null)
+                    return true;
+
+                if (!c.IsValid)
+                {
+                    __result = false;
+                    return false;
+                }
+
+                if (!area[c])
+                {
+                    __result = false;
+                    return false;
+                }
+
+                return true;
             }
         }
 

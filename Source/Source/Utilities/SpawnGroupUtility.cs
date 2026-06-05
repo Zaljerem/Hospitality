@@ -191,7 +191,10 @@ internal static class SpawnGroupUtility
         var validGuest = !pawn.Discarded && !pawn.Dead && !pawn.Spawned && !pawn.NonHumanlikeOrWildMan() && !pawn.Downed && pawn.Faction == faction;
         if (!validGuest) return false;
         // Filter out mechanoids
-        //if (pawn.RaceProps?.IsMechanoid == true) return false;
+        //if (pawn.RaceProps?.IsMechanoid == true) return false;        
+        // no babies (never seen this personally but it's been reported)
+        if (pawn.DevelopmentalStage == DevelopmentalStage.Newborn) return false;
+        if (pawn.DevelopmentalStage == DevelopmentalStage.Baby) return false;
         // Leader only comes when relations are good
         if (faction.leader == pawn && faction.PlayerGoodwill < 80) return false;
         if (pawn.kindDef == PawnKindDefOf.Empire_Royal_Bestower) return false;

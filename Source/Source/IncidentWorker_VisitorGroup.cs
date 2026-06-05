@@ -88,8 +88,11 @@ public class IncidentWorker_VisitorGroup : IncidentWorker_NeutralGroup
         var reasonList = new List<string>(); // string, so we can check for Distinct later
         if (!beds) reasonList.Add("- " + "VisitorsArrivedReasonNoBeds".Translate());
         if (fallout) reasonList.Add("- " + GameConditionDefOf.ToxicFallout.LabelCap);
-        if (winter) reasonList.Add("- " + GameConditionDefOf.VolcanicWinter.LabelCap);       
-        if (!temp && (!spaceBiome || !spaceSOS2Biome)) reasonList.Add("- " + "Temperature".Translate());
+        if (winter) reasonList.Add("- " + GameConditionDefOf.VolcanicWinter.LabelCap);
+        if (!temp && !(spaceBiome || spaceSOS2Biome))
+        {
+            reasonList.Add("- " + "Temperature".Translate());
+        }
 
         foreach (var f in hostileFactions)
         {
@@ -515,22 +518,43 @@ public class IncidentWorker_VisitorGroup : IncidentWorker_NeutralGroup
             float totalValue = 0;
 
             // Money
-            var wealthBase = 10 + (visitor.Faction.HasGoodwill ? visitor.Faction.PlayerGoodwill / 2.0f : Rand.Range(0, 50)); // everyone travelling has at least 10s in their pocket
+            // Each guest should have at least 10 silver
+            var goodwillComponent = visitor.Faction.HasGoodwill
+                ? visitor.Faction.PlayerGoodwill / 2.0f
+                : Rand.Range(0, 50);
+
+            var wealthBase = Mathf.Max(10f, 10f + goodwillComponent);
+
             var title = visitor.royalty?.MostSeniorTitle;
             if (title != null) wealthBase += title.def.seniority / 2.0f;
-            var amountS = Mathf.RoundToInt((wealthBase + visitor.ageTracker.AgeBiologicalYears / 5.0f) * ModSettings_Hospitality.silverMultiplier); // eldery can get better beds to compensate for their lower mood
+
+            var multiplier = Mathf.Max(0.01f, ModSettings_Hospitality.silverMultiplier);
+
+            var amountS = Mathf.Max(10, Mathf.RoundToInt(
+                (wealthBase + visitor.ageTracker.AgeBiologicalYears / 5.0f) * multiplier
+            ));
+
             if (amountS > 0)
             {
                 var money = SpawnGroupUtility.CreateRandomItem(visitor, ThingDefOf.Silver);
                 money.stackCount = amountS;
 
                 var spaceFor = visitor.GetInventorySpaceFor(money);
+
                 if (spaceFor > 0)
                 {
                     money.stackCount = Mathf.Min(spaceFor, amountS);
                     var success = visitor.inventory.innerContainer.TryAdd(money);
-                    if (success) totalValue += money.MarketValue * money.stackCount;
-                    else if (!money.Destroyed) money.Destroy();
+
+                    if (success)
+                        totalValue += money.MarketValue * money.stackCount;
+                    else if (!money.Destroyed)
+                        money.Destroy();
+                }
+                else
+                {
+                    // fallback: drop it
+                    GenPlace.TryPlaceThing(money, visitor.Position, visitor.Map, ThingPlaceMode.Near);
                 }
             }
 
