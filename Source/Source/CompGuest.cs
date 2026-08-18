@@ -80,6 +80,12 @@ public class CompGuest : ThingComp
         Scribe_References.Look(ref guestArea_int, "guestArea");
         Scribe_References.Look(ref shoppingArea_int, "shoppingArea");
         Scribe_References.Look(ref bed, "bed");
+        // A lord that is no longer in any map's LordManager will not be saved, so
+        // this reference dangles on load: "Could not resolve reference to object
+        // with loadID Lord_N". Guests that simply visit and leave never clear the
+        // field - only Leave(clearLord: true) does, and only Adopt() passes true -
+        // so a departed guest keeps pointing at a disbanded lord forever.
+        if (Scribe.mode == LoadSaveMode.Saving && lord != null && !Find.Maps.Any(map => map.lordManager.lords.Contains(lord))) lord = null;
         Scribe_References.Look(ref lord, "lord");
         boughtItems ??= [];
 
