@@ -1,0 +1,17 @@
+﻿using HarmonyLib;
+using RimWorld;
+using Verse;
+using System.Linq;
+
+[HarmonyPatch(typeof(MeditationUtility), nameof(MeditationUtility.CanUseRoomToMeditate))]
+public static class Debug_MeditationRoom
+{
+    static void Postfix(Room r, Pawn p, ref bool __result)
+    {
+        if (!p.IsColonist) return;
+
+        string owners = r.Owners == null ? "NULL" : string.Join(",", r.Owners.Select(o => o.LabelShort));
+
+        Log.Message($"[JOY DEBUG] {p.LabelShort} meditate room={r.ID} owners={owners} result={__result}");
+    }
+}

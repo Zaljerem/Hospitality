@@ -346,6 +346,26 @@ public class IncidentWorker_VisitorGroup : IncidentWorker_NeutralGroup
         }
     }
 
+
+    private static bool IsValidGuestPawn(Pawn pawn)
+    {
+        if (pawn == null)
+            return false;
+
+        if (pawn.RaceProps == null)
+            return false;
+
+        // Hospitality expects humanlike pawns
+        if (!pawn.RaceProps.Humanlike)
+            return false;
+
+        // Extra safety
+        if (pawn.RaceProps.IsMechanoid)
+            return false;
+
+        return true;
+    }
+
     protected void SpawnPawns(IncidentParms parms, List<Pawn> spawned)
     {
         var map = (Map)parms.target;
@@ -354,7 +374,12 @@ public class IncidentWorker_VisitorGroup : IncidentWorker_NeutralGroup
 
         foreach (var pawn in selection)
         {
-            if (pawn.RaceProps?.IsMechanoid == true) continue;            
+            if (!IsValidGuestPawn(pawn))
+            {
+                Log.Warning($"Hospitality: Skipping invalid guest pawn {pawn?.Label} ({pawn?.def?.defName})");
+                pawn.DestroyOrPassToWorld();
+                continue;
+            }
 
             try
             {
@@ -405,23 +430,39 @@ public class IncidentWorker_VisitorGroup : IncidentWorker_NeutralGroup
         var i = 0;
         while (i < preferredAmount)
         {
-            var newPawns = PawnGroupMakerUtility.GeneratePawns(IncidentParmsUtility.GetDefaultPawnGroupMakerParms(PawnGroupKindDef, parms, true), false).ToArray();
+            var newPawns = PawnGroupMakerUtility.GeneratePawns(
+                IncidentParmsUtility.GetDefaultPawnGroupMakerParms(PawnGroupKindDef, parms, true),
+                false).ToArray();
 
-            Log.Message($"Created {newPawns.Length} new pawns for {parms.faction.Name}.");
-            foreach (var pawn in newPawns)
+            Log.Message($"Generated {newPawns.Length} candidate pawns for {parms.faction.Name}.");
+
+            var validPawns = newPawns
+                .Where(p => IsValidGuestPawn(p))
+                .ToArray();
+
+            // Dispose of rejected pawns
+            foreach (var pawn in newPawns.Except(validPawns))
+            {
+                pawn.DestroyOrPassToWorld();
+            }
+
+            foreach (var pawn in validPawns)
             {
                 Find.World.worldPawns.PassToWorld(pawn);
             }
 
-            foreach (var pawn in newPawns.RandomlyUsingTitleAsChance())
+            foreach (var pawn in validPawns.RandomlyUsingTitleAsChance())
             {
                 yield return pawn;
                 i++;
-                if (i >= preferredAmount) yield break;
+
+                if (i >= preferredAmount)
+                    yield break;
             }
 
-            // To avoid infinite loop
-            if (!newPawns.Any()) i++;
+            // Nothing usable this pass? Try again.
+            if (!validPawns.Any())
+                continue;
         }
     }
 

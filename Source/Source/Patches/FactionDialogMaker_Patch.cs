@@ -13,10 +13,12 @@ namespace Hospitality.Patches
             [HarmonyPostfix]
             public static void Postfix(Pawn negotiator, Faction faction, ref DiaNode __result)
             {
-                if (negotiator.Map?.IsPlayerHome == true)
+                // new
+                if (negotiator.Map?.IsPlayerHome == true && __result != null)
                 {
                     __result.options.Insert(0, InviteGuestsOption(negotiator.Map, faction, negotiator));
                 }
+                // end new
             }
 
             private static DiaOption InviteGuestsOption(Map map, Faction faction, Pawn negotiator)
@@ -28,7 +30,20 @@ namespace Hospitality.Patches
                     optionNoHostiles.Disable("GuestsCantBeHostile".Translate());
                     return optionNoHostiles;
                 }
-                var nextVisit = map.GetMapComponent().GetNextVisit(faction);
+                // new
+                var hospitalityMapComponent = map.GetMapComponent();
+                if (hospitalityMapComponent == null)
+                {
+                    Log.Warning("[Hospitality] Hospitality_MapComponent missing on map while opening faction dialog.");
+                    return new DiaOption(text)
+                    {
+                        disabled = true,
+                        disabledReason = "GuestsCantCome".Translate()
+                    };
+                }
+
+                var nextVisit = hospitalityMapComponent.GetNextVisit(faction);
+                // end new
                 float travelDays = GenericUtility.GetTravelDays(faction, map);
                 // ReSharper disable once CompareOfFloatsByEqualityOperator
                 if (travelDays == GenericUtility.NoBasesLeft)
@@ -48,7 +63,11 @@ namespace Hospitality.Patches
                         optionAlreadyQueued.Disable("GuestsDontWantToCome".Translate());
                     return optionAlreadyQueued;
                 }
-                if (!faction.def.allowedArrivalTemperatureRange.ExpandedBy(-4f).Includes(map.mapTemperature.SeasonalTemp))
+                // new
+                if (faction.def?.allowedArrivalTemperatureRange != null &&
+    !faction.def.allowedArrivalTemperatureRange.ExpandedBy(-4f)
+        .Includes(map.mapTemperature.SeasonalTemp))
+            // end new
                 {
                     DiaOption optionBadTemperature = new DiaOption(text);
                     optionBadTemperature.Disable("BadTemperature".Translate());

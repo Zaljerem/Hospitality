@@ -151,7 +151,7 @@ public class CompGuest : ThingComp
     {
         arrived = false;
         Pawn.ownership.UnclaimBed();
-
+        bed = null;
         if (clearLord) lord = null;
     }
 

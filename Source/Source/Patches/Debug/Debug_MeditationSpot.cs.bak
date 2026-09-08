@@ -1,0 +1,24 @@
+﻿using HarmonyLib;
+using RimWorld;
+using Verse;
+
+namespace Hospitality.Debug
+{
+    [HarmonyPatch(typeof(MeditationUtility), nameof(MeditationUtility.FindMeditationSpot))]
+    public static class Debug_MeditationSpot
+    {
+        static void Postfix(Pawn pawn, MeditationSpotAndFocus __result)
+        {
+            if (!pawn.IsColonist) return;
+
+            if (__result.IsValid)
+            {
+                Log.Message($"[JOY DEBUG] Meditation spot found for {pawn.LabelShort} at {__result.spot.Cell}");
+            }
+            else
+            {
+                Log.Message($"[JOY DEBUG] Meditation spot FAILED for {pawn.LabelShort}");
+            }
+        }
+    }
+}

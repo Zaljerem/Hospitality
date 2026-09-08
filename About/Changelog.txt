@@ -17,3 +17,9 @@
 1.0.8 - 2/26/2026 - explicitly prevent babies from being valid guests (never seen this personally, but received reports), reworked guest money code to make sure it consistently provides at least 10 silver / guest
 
 1.0.9 - 6/4/2026 - minor fix for SOS2 compatibility
+
+1.1.0 - 6/12/2026 - hardened FactionDialogMaker patch, improved pawnkind filtering in preparation for a new Faction Blender fork
+
+1.1.1 - 7/7/2026 - further adjustments for Faction Blender, support for Vanilla Nutrient Paste Expanded
+
+1.1.2 - 9/8/2026 - fix to bed claiming code, thanks ilyvion!

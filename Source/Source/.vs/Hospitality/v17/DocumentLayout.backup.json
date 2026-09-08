@@ -1,0 +1,1157 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\jobdriver_scroungefood.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:jobdriver_scroungefood.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\maintab\\areagui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:maintab\\areagui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\compguest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:compguest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\utilities\\spawngrouputility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:utilities\\spawngrouputility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\hospitality_mapcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:hospitality_mapcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\patches\\game_finalizeinit_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:patches\\game_finalizeinit_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\bedstatsdrawer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:bedstatsdrawer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\patches\\pawn_mindstate_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:patches\\pawn_mindstate_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\utilities\\guestutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:utilities\\guestutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\incidentworker_visitorgroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:incidentworker_visitorgroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\lordjob_visitcolony.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:lordjob_visitcolony.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\incidentworker_visitorgroupmax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:incidentworker_visitorgroupmax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\incidentworker_visitorgroupselectfaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:incidentworker_visitorgroupselectfaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\patches\\thingfilter_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:patches\\thingfilter_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\hospitality_specialinjector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:hospitality_specialinjector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\hospitality_gamecomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:hospitality_gamecomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\building_guestbed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:building_guestbed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\utilities\\genericutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:utilities\\genericutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\guestbedextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:guestbedextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\utilities\\bedutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:utilities\\bedutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\patches\\game_loadgame_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:patches\\game_loadgame_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\jobdriver_guestbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:jobdriver_guestbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\maintab\\pawntable_guests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:maintab\\pawntable_guests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\utilities\\guestutility.cs.bak||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:utilities\\guestutility.cs.bak||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\modsettings_hospitality.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:modsettings_hospitality.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\utilities\\listing_custom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:utilities\\listing_custom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\utilities\\guestutility.cs.newer||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:utilities\\guestutility.cs.newer||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\patches\\pawn_tradertracker_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:patches\\pawn_tradertracker_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\jobgiver_relax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:jobgiver_relax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\utilities\\itemutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:utilities\\itemutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\utilities\\defsutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:utilities\\defsutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\gizmo_guestbed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:gizmo_guestbed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\alert_guestnotenoughbeds.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:alert_guestnotenoughbeds.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\utilities\\computility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:utilities\\computility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\utilities\\foodutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:utilities\\foodutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\alert_guestcantclaimbed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:alert_guestcantclaimbed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\alert_guestthought.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:alert_guestthought.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\alert_guest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:alert_guest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\maintab\\pawncolumnworker_buttonmore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:maintab\\pawncolumnworker_buttonmore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\maintab\\pawncolumnworker_labelcustom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:maintab\\pawncolumnworker_labelcustom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\utilities\\internaldefof.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:utilities\\internaldefof.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\itab_pawn_guest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:itab_pawn_guest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\maintab\\pawncolumnworker_relationship.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:maintab\\pawncolumnworker_relationship.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\maintab\\pawncolumnworker_makefriends.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:maintab\\pawncolumnworker_makefriends.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\patches\\pawn_interactionstracker_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:patches\\pawn_interactionstracker_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\utilities\\relationscache.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:utilities\\relationscache.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\utilities\\relationutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:utilities\\relationutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\lordtoil_visitpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:lordtoil_visitpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\patches\\pathfinder_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:patches\\pathfinder_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\jobdriver_browseitems.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:jobdriver_browseitems.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\patches\\hediff_pregnant_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:patches\\hediff_pregnant_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\jobgiver_buyfood.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:jobgiver_buyfood.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\patches\\foodutility_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:patches\\foodutility_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\jobdriver_emptyvendingmachine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:jobdriver_emptyvendingmachine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\workgiver_emptyvendingmachine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:workgiver_emptyvendingmachine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\patches\\pawn_ownership_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:patches\\pawn_ownership_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\patches\\room_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:patches\\room_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\multiplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:multiplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\patches\\building_door_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:patches\\building_door_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\patches\\building_bed_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:patches\\building_bed_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\patches\\addictionutility_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:patches\\addictionutility_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\maintab\\pawncolumnworker_shoppingarea.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:maintab\\pawncolumnworker_shoppingarea.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\maintab\\pawncolumnworker_hospitality.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:maintab\\pawncolumnworker_hospitality.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\maintab\\pawncolumnworker_friendsforrecruiting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:maintab\\pawncolumnworker_friendsforrecruiting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\maintab\\pawncolumnworker_faction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:maintab\\pawncolumnworker_faction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\maintab\\pawncolumnworker_entertain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:maintab\\pawncolumnworker_entertain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\maintab\\pawncolumnworker_areabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:maintab\\pawncolumnworker_areabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\maintab\\pawncolumnworker_accommodationarea.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:maintab\\pawncolumnworker_accommodationarea.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\maintab\\maintabwindow_hospitality.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:maintab\\maintabwindow_hospitality.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\maintab\\maintabutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:maintab\\maintabutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|c:\\rimworld modding\\!repos\\!test16\\hospitality\\hospitality\\maintab\\dialog_mapsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E61B2F2-D96D-4A6B-B84A-AC78045E6A2F}|Hospitality.csproj|solutionrelative:maintab\\dialog_mapsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "JobDriver_ScroungeFood.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\JobDriver_ScroungeFood.cs",
+              "RelativeDocumentMoniker": "JobDriver_ScroungeFood.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\JobDriver_ScroungeFood.cs",
+              "RelativeToolTip": "JobDriver_ScroungeFood.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAwBsAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-29T00:49:04.503Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "IncidentWorker_VisitorGroupSelectFaction.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\IncidentWorker_VisitorGroupSelectFaction.cs",
+              "RelativeDocumentMoniker": "IncidentWorker_VisitorGroupSelectFaction.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\IncidentWorker_VisitorGroupSelectFaction.cs",
+              "RelativeToolTip": "IncidentWorker_VisitorGroupSelectFaction.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-13T22:44:38.795Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Hospitality_MapComponent.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Hospitality_MapComponent.cs",
+              "RelativeDocumentMoniker": "Hospitality_MapComponent.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Hospitality_MapComponent.cs",
+              "RelativeToolTip": "Hospitality_MapComponent.cs",
+              "ViewState": "AgIAABYBAAAAAAAAAAAAANsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-23T19:25:53.968Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Game_FinalizeInit_Patch.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Patches\\Game_FinalizeInit_Patch.cs",
+              "RelativeDocumentMoniker": "Patches\\Game_FinalizeInit_Patch.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Patches\\Game_FinalizeInit_Patch.cs",
+              "RelativeToolTip": "Patches\\Game_FinalizeInit_Patch.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAkwDUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-05T16:32:49.93Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Pawn_MindState_Patch.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Patches\\Pawn_MindState_Patch.cs",
+              "RelativeDocumentMoniker": "Patches\\Pawn_MindState_Patch.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Patches\\Pawn_MindState_Patch.cs",
+              "RelativeToolTip": "Patches\\Pawn_MindState_Patch.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAYAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T18:01:10.792Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SpawnGroupUtility.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Utilities\\SpawnGroupUtility.cs",
+              "RelativeDocumentMoniker": "Utilities\\SpawnGroupUtility.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Utilities\\SpawnGroupUtility.cs",
+              "RelativeToolTip": "Utilities\\SpawnGroupUtility.cs",
+              "ViewState": "AgIAAJUAAAAAAAAAAAAYwJsAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-26T02:25:32.99Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CompGuest.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\CompGuest.cs",
+              "RelativeDocumentMoniker": "CompGuest.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\CompGuest.cs",
+              "RelativeToolTip": "CompGuest.cs",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAiwDwAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:16:21.991Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AreaGUI.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\AreaGUI.cs",
+              "RelativeDocumentMoniker": "MainTab\\AreaGUI.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\AreaGUI.cs",
+              "RelativeToolTip": "MainTab\\AreaGUI.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAUwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:14:26.294Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "IncidentWorker_VisitorGroupMax.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\IncidentWorker_VisitorGroupMax.cs",
+              "RelativeDocumentMoniker": "IncidentWorker_VisitorGroupMax.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\IncidentWorker_VisitorGroupMax.cs",
+              "RelativeToolTip": "IncidentWorker_VisitorGroupMax.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-14T03:46:15.062Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "IncidentWorker_VisitorGroup.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\IncidentWorker_VisitorGroup.cs",
+              "RelativeDocumentMoniker": "IncidentWorker_VisitorGroup.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\IncidentWorker_VisitorGroup.cs",
+              "RelativeToolTip": "IncidentWorker_VisitorGroup.cs",
+              "ViewState": "AgIAAJ4CAAAAAAAAAAAewK4CAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-19T00:46:06.835Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BedStatsDrawer.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\BedStatsDrawer.cs",
+              "RelativeDocumentMoniker": "BedStatsDrawer.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\BedStatsDrawer.cs",
+              "RelativeToolTip": "BedStatsDrawer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAH0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-31T03:33:25.785Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Hospitality_SpecialInjector.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Hospitality_SpecialInjector.cs",
+              "RelativeDocumentMoniker": "Hospitality_SpecialInjector.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Hospitality_SpecialInjector.cs",
+              "RelativeToolTip": "Hospitality_SpecialInjector.cs",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAewFAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-23T19:25:58.965Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "LordJob_VisitColony.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\LordJob_VisitColony.cs",
+              "RelativeDocumentMoniker": "LordJob_VisitColony.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\LordJob_VisitColony.cs",
+              "RelativeToolTip": "LordJob_VisitColony.cs",
+              "ViewState": "AgIAAG0AAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-24T01:50:39.341Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "GuestUtility.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Utilities\\GuestUtility.cs",
+              "RelativeDocumentMoniker": "Utilities\\GuestUtility.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Utilities\\GuestUtility.cs",
+              "RelativeToolTip": "Utilities\\GuestUtility.cs",
+              "ViewState": "AgIAABYEAAAAAAAAAIAwwE0EAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:21:49.229Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "BedUtility.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Utilities\\BedUtility.cs",
+              "RelativeDocumentMoniker": "Utilities\\BedUtility.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Utilities\\BedUtility.cs",
+              "RelativeToolTip": "Utilities\\BedUtility.cs",
+              "ViewState": "AgIAAKwAAAAAAAAAAAAYwCoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T19:00:09.675Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ThingFilter_Patch.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Patches\\ThingFilter_Patch.cs",
+              "RelativeDocumentMoniker": "Patches\\ThingFilter_Patch.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Patches\\ThingFilter_Patch.cs",
+              "RelativeToolTip": "Patches\\ThingFilter_Patch.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAcAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-23T19:15:13.488Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Building_GuestBed.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Building_GuestBed.cs",
+              "RelativeDocumentMoniker": "Building_GuestBed.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Building_GuestBed.cs",
+              "RelativeToolTip": "Building_GuestBed.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAYwAsAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-23T19:14:57.415Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Hospitality_GameComponent.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Hospitality_GameComponent.cs",
+              "RelativeDocumentMoniker": "Hospitality_GameComponent.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Hospitality_GameComponent.cs",
+              "RelativeToolTip": "Hospitality_GameComponent.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAIwA0AAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-23T17:21:15.727Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "GenericUtility.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Utilities\\GenericUtility.cs",
+              "RelativeDocumentMoniker": "Utilities\\GenericUtility.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Utilities\\GenericUtility.cs",
+              "RelativeToolTip": "Utilities\\GenericUtility.cs",
+              "ViewState": "AgIAAH0AAAAAAAAAAAAIwOUAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-11T19:18:49.197Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "GuestBedExtension.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\GuestBedExtension.cs",
+              "RelativeDocumentMoniker": "GuestBedExtension.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\GuestBedExtension.cs",
+              "RelativeToolTip": "GuestBedExtension.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-21T00:13:03.592Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "Listing_Custom.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Utilities\\Listing_Custom.cs",
+              "RelativeDocumentMoniker": "Utilities\\Listing_Custom.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Utilities\\Listing_Custom.cs",
+              "RelativeToolTip": "Utilities\\Listing_Custom.cs",
+              "ViewState": "AgIAAEYAAAAAAAAAAAAAAFgAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T18:01:04.822Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "GuestUtility.cs.bak",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Utilities\\GuestUtility.cs.bak",
+              "RelativeDocumentMoniker": "Utilities\\GuestUtility.cs.bak",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Utilities\\GuestUtility.cs.bak",
+              "RelativeToolTip": "Utilities\\GuestUtility.cs.bak",
+              "ViewState": "AgIAAAQCAAAAAAAAAAAAAAQCAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-06-21T04:49:59.188Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "JobDriver_GuestBase.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\JobDriver_GuestBase.cs",
+              "RelativeDocumentMoniker": "JobDriver_GuestBase.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\JobDriver_GuestBase.cs",
+              "RelativeToolTip": "JobDriver_GuestBase.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAkwBEAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-05T15:59:04.639Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Game_LoadGame_Patch.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Patches\\Game_LoadGame_Patch.cs",
+              "RelativeDocumentMoniker": "Patches\\Game_LoadGame_Patch.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Patches\\Game_LoadGame_Patch.cs",
+              "RelativeToolTip": "Patches\\Game_LoadGame_Patch.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T18:00:59.668Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "DefsUtility.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Utilities\\DefsUtility.cs",
+              "RelativeDocumentMoniker": "Utilities\\DefsUtility.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Utilities\\DefsUtility.cs",
+              "RelativeToolTip": "Utilities\\DefsUtility.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAIwDYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-10T01:55:18.562Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Pawn_TraderTracker_Patch.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Patches\\Pawn_TraderTracker_Patch.cs",
+              "RelativeDocumentMoniker": "Patches\\Pawn_TraderTracker_Patch.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Patches\\Pawn_TraderTracker_Patch.cs",
+              "RelativeToolTip": "Patches\\Pawn_TraderTracker_Patch.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABQAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T18:00:24.698Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "PawnTable_Guests.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\PawnTable_Guests.cs",
+              "RelativeDocumentMoniker": "MainTab\\PawnTable_Guests.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\PawnTable_Guests.cs",
+              "RelativeToolTip": "MainTab\\PawnTable_Guests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:14:47.8Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "GuestUtility.cs.newer",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Utilities\\GuestUtility.cs.newer",
+              "RelativeDocumentMoniker": "Utilities\\GuestUtility.cs.newer",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Utilities\\GuestUtility.cs.newer",
+              "RelativeToolTip": "Utilities\\GuestUtility.cs.newer",
+              "ViewState": "AgIAAAQCAAAAAAAAAAAAAAQCAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-07-23T18:01:01.901Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "ModSettings_Hospitality.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\ModSettings_Hospitality.cs",
+              "RelativeDocumentMoniker": "ModSettings_Hospitality.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\ModSettings_Hospitality.cs",
+              "RelativeToolTip": "ModSettings_Hospitality.cs",
+              "ViewState": "AgIAAFMAAAAAAAAAAAAAAGUAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T18:01:06.875Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "ItemUtility.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Utilities\\ItemUtility.cs",
+              "RelativeDocumentMoniker": "Utilities\\ItemUtility.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Utilities\\ItemUtility.cs",
+              "RelativeToolTip": "Utilities\\ItemUtility.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAQwBUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-23T19:16:41.782Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "JobGiver_Relax.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\JobGiver_Relax.cs",
+              "RelativeDocumentMoniker": "JobGiver_Relax.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\JobGiver_Relax.cs",
+              "RelativeToolTip": "JobGiver_Relax.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T17:10:19.677Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "Gizmo_GuestBed.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Gizmo_GuestBed.cs",
+              "RelativeDocumentMoniker": "Gizmo_GuestBed.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Gizmo_GuestBed.cs",
+              "RelativeToolTip": "Gizmo_GuestBed.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T19:01:43.883Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "Alert_GuestNotEnoughBeds.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Alert_GuestNotEnoughBeds.cs",
+              "RelativeDocumentMoniker": "Alert_GuestNotEnoughBeds.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Alert_GuestNotEnoughBeds.cs",
+              "RelativeToolTip": "Alert_GuestNotEnoughBeds.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAhwA8AAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T19:01:09.387Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "CompUtility.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Utilities\\CompUtility.cs",
+              "RelativeDocumentMoniker": "Utilities\\CompUtility.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Utilities\\CompUtility.cs",
+              "RelativeToolTip": "Utilities\\CompUtility.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-14T04:02:25.702Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "FoodUtility.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Utilities\\FoodUtility.cs",
+              "RelativeDocumentMoniker": "Utilities\\FoodUtility.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Utilities\\FoodUtility.cs",
+              "RelativeToolTip": "Utilities\\FoodUtility.cs",
+              "ViewState": "AgIAADkAAAAAAAAAAAAowAsAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-23T19:16:40.281Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "PawnColumnWorker_LabelCustom.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\PawnColumnWorker_LabelCustom.cs",
+              "RelativeDocumentMoniker": "MainTab\\PawnColumnWorker_LabelCustom.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\PawnColumnWorker_LabelCustom.cs",
+              "RelativeToolTip": "MainTab\\PawnColumnWorker_LabelCustom.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:14:41.62Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "Alert_GuestThought.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Alert_GuestThought.cs",
+              "RelativeDocumentMoniker": "Alert_GuestThought.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Alert_GuestThought.cs",
+              "RelativeToolTip": "Alert_GuestThought.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-09T17:20:14.242Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "Alert_GuestCantClaimBed.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Alert_GuestCantClaimBed.cs",
+              "RelativeDocumentMoniker": "Alert_GuestCantClaimBed.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Alert_GuestCantClaimBed.cs",
+              "RelativeToolTip": "Alert_GuestCantClaimBed.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-09T17:21:35.428Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "InternalDefOf.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Utilities\\InternalDefOf.cs",
+              "RelativeDocumentMoniker": "Utilities\\InternalDefOf.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Utilities\\InternalDefOf.cs",
+              "RelativeToolTip": "Utilities\\InternalDefOf.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-23T19:16:41.242Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "Alert_Guest.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Alert_Guest.cs",
+              "RelativeDocumentMoniker": "Alert_Guest.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Alert_Guest.cs",
+              "RelativeToolTip": "Alert_Guest.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:43:10.526Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "PawnColumnWorker_ButtonMore.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\PawnColumnWorker_ButtonMore.cs",
+              "RelativeDocumentMoniker": "MainTab\\PawnColumnWorker_ButtonMore.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\PawnColumnWorker_ButtonMore.cs",
+              "RelativeToolTip": "MainTab\\PawnColumnWorker_ButtonMore.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAiwA4AAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:14:35.759Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "ITab_Pawn_Guest.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\ITab_Pawn_Guest.cs",
+              "RelativeDocumentMoniker": "ITab_Pawn_Guest.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\ITab_Pawn_Guest.cs",
+              "RelativeToolTip": "ITab_Pawn_Guest.cs",
+              "ViewState": "AgIAALcAAAAAAAAAAAAmwBwAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-23T19:15:30.52Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "RelationsCache.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Utilities\\RelationsCache.cs",
+              "RelativeDocumentMoniker": "Utilities\\RelationsCache.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Utilities\\RelationsCache.cs",
+              "RelativeToolTip": "Utilities\\RelationsCache.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAwwCkAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:20:03.653Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "Pawn_InteractionsTracker_Patch.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Patches\\Pawn_InteractionsTracker_Patch.cs",
+              "RelativeDocumentMoniker": "Patches\\Pawn_InteractionsTracker_Patch.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Patches\\Pawn_InteractionsTracker_Patch.cs",
+              "RelativeToolTip": "Patches\\Pawn_InteractionsTracker_Patch.cs",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAqwGcAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:20:10.571Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "PawnColumnWorker_MakeFriends.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\PawnColumnWorker_MakeFriends.cs",
+              "RelativeDocumentMoniker": "MainTab\\PawnColumnWorker_MakeFriends.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\PawnColumnWorker_MakeFriends.cs",
+              "RelativeToolTip": "MainTab\\PawnColumnWorker_MakeFriends.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:14:42.675Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "PawnColumnWorker_Relationship.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\PawnColumnWorker_Relationship.cs",
+              "RelativeDocumentMoniker": "MainTab\\PawnColumnWorker_Relationship.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\PawnColumnWorker_Relationship.cs",
+              "RelativeToolTip": "MainTab\\PawnColumnWorker_Relationship.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:14:43.703Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "JobDriver_BrowseItems.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\JobDriver_BrowseItems.cs",
+              "RelativeDocumentMoniker": "JobDriver_BrowseItems.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\JobDriver_BrowseItems.cs",
+              "RelativeToolTip": "JobDriver_BrowseItems.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:19:48.789Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "RelationUtility.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Utilities\\RelationUtility.cs",
+              "RelativeDocumentMoniker": "Utilities\\RelationUtility.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Utilities\\RelationUtility.cs",
+              "RelativeToolTip": "Utilities\\RelationUtility.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAYwBEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:19:54.884Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "PathFinder_Patch.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Patches\\PathFinder_Patch.cs",
+              "RelativeDocumentMoniker": "Patches\\PathFinder_Patch.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Patches\\PathFinder_Patch.cs",
+              "RelativeToolTip": "Patches\\PathFinder_Patch.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:16:16.513Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "LordToil_VisitPoint.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\LordToil_VisitPoint.cs",
+              "RelativeDocumentMoniker": "LordToil_VisitPoint.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\LordToil_VisitPoint.cs",
+              "RelativeToolTip": "LordToil_VisitPoint.cs",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAswIMAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:20:20.259Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "Hediff_Pregnant_Patch.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Patches\\Hediff_Pregnant_Patch.cs",
+              "RelativeDocumentMoniker": "Patches\\Hediff_Pregnant_Patch.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Patches\\Hediff_Pregnant_Patch.cs",
+              "RelativeToolTip": "Patches\\Hediff_Pregnant_Patch.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAqwAwAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:43:32.008Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "JobDriver_EmptyVendingMachine.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\JobDriver_EmptyVendingMachine.cs",
+              "RelativeDocumentMoniker": "JobDriver_EmptyVendingMachine.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\JobDriver_EmptyVendingMachine.cs",
+              "RelativeToolTip": "JobDriver_EmptyVendingMachine.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAIwCAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-19T00:47:00.064Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "FoodUtility_Patch.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Patches\\FoodUtility_Patch.cs",
+              "RelativeDocumentMoniker": "Patches\\FoodUtility_Patch.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Patches\\FoodUtility_Patch.cs",
+              "RelativeToolTip": "Patches\\FoodUtility_Patch.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAxwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T14:25:41.543Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "JobGiver_BuyFood.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\JobGiver_BuyFood.cs",
+              "RelativeDocumentMoniker": "JobGiver_BuyFood.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\JobGiver_BuyFood.cs",
+              "RelativeToolTip": "JobGiver_BuyFood.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T14:26:20.774Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 54,
+              "Title": "WorkGiver_EmptyVendingMachine.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\WorkGiver_EmptyVendingMachine.cs",
+              "RelativeDocumentMoniker": "WorkGiver_EmptyVendingMachine.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\WorkGiver_EmptyVendingMachine.cs",
+              "RelativeToolTip": "WorkGiver_EmptyVendingMachine.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwBcAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-19T00:45:04.596Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 56,
+              "Title": "Room_Patch.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Patches\\Room_Patch.cs",
+              "RelativeDocumentMoniker": "Patches\\Room_Patch.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Patches\\Room_Patch.cs",
+              "RelativeToolTip": "Patches\\Room_Patch.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAgwCoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:31:40.637Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 55,
+              "Title": "Pawn_Ownership_Patch.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Patches\\Pawn_Ownership_Patch.cs",
+              "RelativeDocumentMoniker": "Patches\\Pawn_Ownership_Patch.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Patches\\Pawn_Ownership_Patch.cs",
+              "RelativeToolTip": "Patches\\Pawn_Ownership_Patch.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:30:05.258Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 57,
+              "Title": "Multiplayer.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Multiplayer.cs",
+              "RelativeDocumentMoniker": "Multiplayer.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Multiplayer.cs",
+              "RelativeToolTip": "Multiplayer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:15:03.533Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 58,
+              "Title": "Building_Door_Patch.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Patches\\Building_Door_Patch.cs",
+              "RelativeDocumentMoniker": "Patches\\Building_Door_Patch.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Patches\\Building_Door_Patch.cs",
+              "RelativeToolTip": "Patches\\Building_Door_Patch.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:14:53.509Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 59,
+              "Title": "Building_Bed_Patch.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Patches\\Building_Bed_Patch.cs",
+              "RelativeDocumentMoniker": "Patches\\Building_Bed_Patch.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Patches\\Building_Bed_Patch.cs",
+              "RelativeToolTip": "Patches\\Building_Bed_Patch.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:14:52.153Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 60,
+              "Title": "AddictionUtility_Patch.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Patches\\AddictionUtility_Patch.cs",
+              "RelativeDocumentMoniker": "Patches\\AddictionUtility_Patch.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\Patches\\AddictionUtility_Patch.cs",
+              "RelativeToolTip": "Patches\\AddictionUtility_Patch.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:14:50.757Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 61,
+              "Title": "PawnColumnWorker_ShoppingArea.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\PawnColumnWorker_ShoppingArea.cs",
+              "RelativeDocumentMoniker": "MainTab\\PawnColumnWorker_ShoppingArea.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\PawnColumnWorker_ShoppingArea.cs",
+              "RelativeToolTip": "MainTab\\PawnColumnWorker_ShoppingArea.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:14:44.75Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 62,
+              "Title": "PawnColumnWorker_Hospitality.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\PawnColumnWorker_Hospitality.cs",
+              "RelativeDocumentMoniker": "MainTab\\PawnColumnWorker_Hospitality.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\PawnColumnWorker_Hospitality.cs",
+              "RelativeToolTip": "MainTab\\PawnColumnWorker_Hospitality.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:14:40.443Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 63,
+              "Title": "PawnColumnWorker_FriendsForRecruiting.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\PawnColumnWorker_FriendsForRecruiting.cs",
+              "RelativeDocumentMoniker": "MainTab\\PawnColumnWorker_FriendsForRecruiting.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\PawnColumnWorker_FriendsForRecruiting.cs",
+              "RelativeToolTip": "MainTab\\PawnColumnWorker_FriendsForRecruiting.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:14:39.26Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 64,
+              "Title": "PawnColumnWorker_Faction.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\PawnColumnWorker_Faction.cs",
+              "RelativeDocumentMoniker": "MainTab\\PawnColumnWorker_Faction.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\PawnColumnWorker_Faction.cs",
+              "RelativeToolTip": "MainTab\\PawnColumnWorker_Faction.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:14:38.057Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 65,
+              "Title": "PawnColumnWorker_Entertain.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\PawnColumnWorker_Entertain.cs",
+              "RelativeDocumentMoniker": "MainTab\\PawnColumnWorker_Entertain.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\PawnColumnWorker_Entertain.cs",
+              "RelativeToolTip": "MainTab\\PawnColumnWorker_Entertain.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:14:36.943Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 66,
+              "Title": "PawnColumnWorker_AreaBase.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\PawnColumnWorker_AreaBase.cs",
+              "RelativeDocumentMoniker": "MainTab\\PawnColumnWorker_AreaBase.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\PawnColumnWorker_AreaBase.cs",
+              "RelativeToolTip": "MainTab\\PawnColumnWorker_AreaBase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:14:34.607Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 67,
+              "Title": "PawnColumnWorker_AccommodationArea.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\PawnColumnWorker_AccommodationArea.cs",
+              "RelativeDocumentMoniker": "MainTab\\PawnColumnWorker_AccommodationArea.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\PawnColumnWorker_AccommodationArea.cs",
+              "RelativeToolTip": "MainTab\\PawnColumnWorker_AccommodationArea.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:14:33.443Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 68,
+              "Title": "MainTabWindow_Hospitality.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\MainTabWindow_Hospitality.cs",
+              "RelativeDocumentMoniker": "MainTab\\MainTabWindow_Hospitality.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\MainTabWindow_Hospitality.cs",
+              "RelativeToolTip": "MainTab\\MainTabWindow_Hospitality.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:14:32.218Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 69,
+              "Title": "MainTabUtility.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\MainTabUtility.cs",
+              "RelativeDocumentMoniker": "MainTab\\MainTabUtility.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\MainTabUtility.cs",
+              "RelativeToolTip": "MainTab\\MainTabUtility.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:14:30.942Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 70,
+              "Title": "Dialog_MapSettings.cs",
+              "DocumentMoniker": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\Dialog_MapSettings.cs",
+              "RelativeDocumentMoniker": "MainTab\\Dialog_MapSettings.cs",
+              "ToolTip": "C:\\Rimworld Modding\\!Repos\\!Test16\\Hospitality\\Hospitality\\MainTab\\Dialog_MapSettings.cs",
+              "RelativeToolTip": "MainTab\\Dialog_MapSettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T16:14:29.515Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

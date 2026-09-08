@@ -1,0 +1,32 @@
+﻿using HarmonyLib;
+using RimWorld;
+using Verse;
+using Verse.AI;
+
+namespace Hospitality.Debug
+{
+    [HarmonyPatch(typeof(JoyGiver_Meditate), nameof(JoyGiver_Meditate.TryGiveJob))]
+    public static class Debug_MeditationJoy
+    {
+        static void Prefix(Pawn pawn)
+        {
+            if (!pawn.IsColonist) return;
+
+            Log.Message($"[JOY DEBUG] Evaluating meditation/prayer for {pawn.LabelShort}");
+        }
+
+        static void Postfix(Pawn pawn, Job __result)
+        {
+            if (!pawn.IsColonist) return;
+
+            if (__result == null)
+            {
+                Log.Message($"[JOY DEBUG] Meditation FAILED for {pawn.LabelShort}");
+            }
+            else
+            {
+                Log.Message($"[JOY DEBUG] Meditation SUCCESS for {pawn.LabelShort}: {__result.def.defName}");
+            }
+        }
+    }
+}
