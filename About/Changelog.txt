@@ -23,3 +23,5 @@
 1.1.1 - 7/7/2026 - further adjustments for Faction Blender, support for Vanilla Nutrient Paste Expanded
 
 1.1.2 - 9/8/2026 - fix to bed claiming code, thanks ilyvion!
+
+1.1.3 - 9/8/2026 - Ukrainian translation by xicscon, lord save fix by Drew1618-cell, thank you!
