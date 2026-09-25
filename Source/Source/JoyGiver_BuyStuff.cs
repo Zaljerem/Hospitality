@@ -40,10 +40,11 @@ public class JoyGiver_BuyStuff : JoyGiver
         if (shoppingArea == null) return null;
 
         var map = pawn.MapHeld;
+        // Qualifies first: IsBuyableAtAll prices each thing, and most things in the area (walls, plants, filth) never qualify
         var things = shoppingArea.ActiveCells.Where(cell => !HasRecentlyLookedAt(pawn, cell)).SelectMany(cell => map.thingGrid.ThingsListAtFast(cell))
-            .Where(t => t != null && ItemUtility.IsBuyableAtAll(pawn, t) && Qualifies(t, pawn)).ToList();
+            .Where(t => t != null && Qualifies(t, pawn) && ItemUtility.IsBuyableAtAll(pawn, t)).ToList();
         var storage = shoppingArea.ActiveCells.Where(cell => !HasRecentlyLookedAt(pawn, cell)).Select(cell => map.edificeGrid[cell]).OfType<Building_Storage>();
-        things.AddRange(storage.SelectMany(s => s.slotGroup.HeldThings.Where(t => ItemUtility.IsBuyableAtAll(pawn, t) && Qualifies(t, pawn))));
+        things.AddRange(storage.SelectMany(s => s.slotGroup.HeldThings.Where(t => Qualifies(t, pawn) && ItemUtility.IsBuyableAtAll(pawn, t))));
         if (things.Count == 0) return null;
         var requiresFoodFactor = GuestUtility.GetRequiresFoodFactor(pawn);
 
