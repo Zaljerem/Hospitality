@@ -75,7 +75,7 @@ public class JobGiver_ScroungeFood : ThinkNode_JobGiver
         var lord = guest.GetLord();
         var targetPawn = TryFindGroupPawn(guest, maxStealOpinion, lord);
         if (targetPawn != null) return targetPawn;
-        targetPawn = guest.MapHeld.lordManager.lords.Where(l => l != lord).Select(l => TryFindGroupPawn(guest, maxStealOpinion, lord)).FirstOrDefault();
+        targetPawn = guest.MapHeld.lordManager.lords.Where(l => l != lord).Select(l => TryFindGroupPawn(guest, maxStealOpinion, l)).FirstOrDefault(p => p != null);
         if (targetPawn != null) return targetPawn;
         targetPawn = guest.MapHeld.mapPawns.pawnsSpawned.FirstOrDefault(p => Qualifies(p, guest, maxStealOpinion));
         return targetPawn;
@@ -90,6 +90,7 @@ public class JobGiver_ScroungeFood : ThinkNode_JobGiver
     {
         if (target == null || guest == null) return false;
         if (target == guest) return false;
+        if (!target.RaceProps.Humanlike) return false;
         if (target.inventory == null) return false;
         if (target.relations == null) return false;
         if (target.InAggroMentalState) return false;
@@ -107,14 +108,14 @@ public class JobGiver_ScroungeFood : ThinkNode_JobGiver
             if (target.story?.traits != null)
             {
                 if (target.story.traits.HasTrait(TraitDefOf.Kind)) minAwakeOpinion -= 35;
-                if (target.story.traits.HasTrait(TraitDefOf.Kind)) minAwakeOpinion += 50;
+                if (target.story.traits.HasTrait(TraitDefOf.Greedy)) minAwakeOpinion += 50;
             }
 
             if (awake && target.relations.OpinionOf(guest) < minAwakeOpinion) return false;
         }
 
         var food = BestFoodInInventory(target, guest);
-        return food != null;
+        return food != null && guest.CanReserve(food, 1, GetAmount(food));
     }
 
     internal static Thing BestFoodInInventory(Pawn holder, Pawn eater)
