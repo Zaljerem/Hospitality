@@ -14,7 +14,18 @@ internal static class GenericUtility
 {
     internal const int NoBasesLeft = -1;
 
-    private static readonly Dictionary<Faction, int> travelDaysCache = new();
+    private const int TicksPerTile = 3300;
+
+    // Travel ticks from a map's tile to each faction's nearest settlement, per map tile. Refreshed daily, so new or
+    // destroyed settlements are picked up, and cleared for a new game.
+    private static readonly Dictionary<PlanetTile, TravelTicks> travelTicksCache = new();
+    private static Game travelTicksGame;
+
+    private class TravelTicks
+    {
+        public int tick;
+        public readonly Dictionary<Faction, int> byFaction = new();
+    }
 
     public static bool IsMeal(this Thing thing)
     {
@@ -64,25 +75,52 @@ internal static class GenericUtility
 
     public static float GetTravelDays(Faction faction, Map map)
     {
-        if (travelDaysCache.TryGetValue(faction, out var minTicks)) return minTicks / (float)GenDate.TicksPerDay;
-
-        minTicks = int.MaxValue;
-        foreach (var settlement in Find.WorldObjects.SettlementBases)
-        {
-            if (settlement.Faction != faction) continue;
-            const int ticksPerTile = 3300;
-            var distance = Find.WorldGrid.TraversalDistanceBetween(map.Tile, settlement.Tile);
-            var travelTicks = ticksPerTile * distance;
-            if (travelTicks <= 0) continue;
-            if (travelTicks < minTicks) minTicks = travelTicks;
-        }
-
-        if (minTicks == int.MaxValue) return NoBasesLeft;
-
-        travelDaysCache.Add(faction, minTicks);
+        var travelTicks = GetTravelTicks(map.Tile);
+        if (!travelTicks.byFaction.TryGetValue(faction, out var minTicks)) return NoBasesLeft;
 
         //Log.Message("It takes the " + faction.def.pawnsPlural + " " + days + " days to travel to the player.");
         return minTicks / (float)GenDate.TicksPerDay;
+    }
+
+    private static TravelTicks GetTravelTicks(PlanetTile start)
+    {
+        if (travelTicksGame != Current.Game)
+        {
+            travelTicksCache.Clear();
+            travelTicksGame = Current.Game;
+        }
+
+        var now = GenTicks.TicksGame;
+        if (travelTicksCache.TryGetValue(start, out var travelTicks) && now - travelTicks.tick < GenDate.TicksPerDay) return travelTicks;
+
+        travelTicks = new TravelTicks { tick = now };
+        travelTicksCache[start] = travelTicks;
+
+        // TraversalDistanceBetween is a flood fill from the start tile, and with passImpassable every tile is passable,
+        // so a single flood fill gives the distance to every settlement. The first time a settlement's tile is reached
+        // is its shortest distance. Settlements on another layer or on the start tile are skipped, as before.
+        var factionsByTile = new Dictionary<PlanetTile, List<Faction>>();
+        foreach (var settlement in Find.WorldObjects.SettlementBases)
+        {
+            var tile = settlement.Tile;
+            if (settlement.Faction == null || !tile.Valid || tile.Layer != start.Layer || tile == start) continue;
+            if (!factionsByTile.TryGetValue(tile, out var factions)) factionsByTile[tile] = factions = new List<Faction>();
+            factions.Add(settlement.Faction);
+        }
+
+        var remaining = factionsByTile.Count;
+        if (remaining == 0) return travelTicks;
+
+        start.Layer.Filler.FloodFill(start, _ => true, (tile, distance) =>
+        {
+            if (!factionsByTile.TryGetValue(tile, out var factions)) return false;
+            foreach (var faction in factions)
+            {
+                if (!travelTicks.byFaction.ContainsKey(faction)) travelTicks.byFaction[faction] = TicksPerTile * distance;
+            }
+            return --remaining == 0;
+        });
+        return travelTicks;
     }
 
     internal static void CheckTooManyIncidentsAtOnce(IncidentQueue incidentQueue)
@@ -147,6 +185,9 @@ internal static class GenericUtility
 
     internal static void FillIncidentQueue(Map map)
     {
+        // Only plan visits to player homes, not to quest or encounter sites. The queue is checked again daily.
+        if (!map.IsPlayerHome) return;
+
         // Add some visits
         var days = Rand.Range(10f, 16f); // initial delay
         var amount = Rand.Range(1, 4);
