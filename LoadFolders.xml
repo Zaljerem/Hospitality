@@ -10,4 +10,10 @@
 	<li IfModActive="Ludeon.RimWorld.Royalty">1.6/Compat/Royalty</li>
 	<li IfModActive="VanillaExpanded.VNutrientE">1.6/Compat/VNPE</li>	
 </v1.6>
+<v1.7>
+	<li>/</li>
+    <li>1.7</li>
+	<li IfModActive="Ludeon.RimWorld.Royalty">1.7/Compat/Royalty</li>
+	<li IfModActive="VanillaExpanded.VNutrientE">1.7/Compat/VNPE</li>	
+</v1.7>
 </loadFolders>
