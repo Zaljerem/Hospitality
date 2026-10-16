@@ -238,6 +238,19 @@ public static class ItemUtility
             else
             {
                 count = count < 0 ? toil.actor.jobs.curJob.count : count;
+                // The holder may have eaten some since the job started.
+                count = Mathf.Min(count, item.stackCount);
+                // Taking the whole stack moves the item itself, with any reservation on it. Leave it
+                // if someone else has reserved it, usually the holder's current meal: the carry would
+                // log "Could not reserve", and the taker couldn't eat it until that meal ends.
+                if (count >= item.stackCount && !toil.actor.CanReserve(item))
+                {
+                    toil.actor.jobs.EndCurrentJob(JobCondition.Incompletable);
+                    return;
+                }
+                // TryDrop can merge into a stack already on the ground and hand back the bigger
+                // stack, and the carry takes up to job.count from it.
+                toil.actor.jobs.curJob.count = count;
                 holder.TryDrop(item, ThingPlaceMode.Near, count, out var droppedThing);
                 if (droppedThing == null)
                 {

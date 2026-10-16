@@ -60,4 +60,10 @@
 		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
 	</JobDef>
 
+	<!-- ScroungeFood reserves the food on this layer, so a second guest leaves food another guest
+	     is already scrounging, without blocking the holder's own meal on the default layer. -->
+	<ReservationLayerDef>
+		<defName>Scrounge</defName>
+	</ReservationLayerDef>
+
 </Defs>

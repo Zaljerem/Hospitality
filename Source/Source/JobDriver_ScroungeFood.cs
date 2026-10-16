@@ -18,10 +18,12 @@ namespace Hospitality
             //if (!pawn.Reserve(job.GetTarget(TargetIndex.A), job, 1, -1, null, errorOnFailed))
             //    return false;
 
-            // Reserve the food (B)
+            // Reserve the food (B) on our own layer, which other scroungers check in
+            // JobGiver_ScroungeFood.Qualifies. The target picks its own inventory food without
+            // checking reservations, so on the default layer this stopped its meal from starting.
             if (job.GetTarget(TargetIndex.B).IsValid)
             {
-                if (!pawn.Reserve(job.GetTarget(TargetIndex.B), job, 1, job.count, null, errorOnFailed))
+                if (!pawn.Reserve(job.GetTarget(TargetIndex.B), job, 1, job.count, InternalDefOf.Scrounge, errorOnFailed))
                     return false;
             }
 
