@@ -238,28 +238,29 @@ public static class ItemUtility
             else
             {
                 count = count < 0 ? toil.actor.jobs.curJob.count : count;
-                // The holder may have eaten some since the job started.
-                count = Mathf.Min(count, item.stackCount);
+                // The holder may have eaten some since the job started, and the taker can only carry
+                // so much.
+                count = Mathf.Min(count, Mathf.Min(item.stackCount, toil.actor.carryTracker.AvailableStackSpace(item.def)));
                 // Taking the whole stack moves the item itself, with any reservation on it. Leave it
-                // if someone else has reserved it, usually the holder's current meal: the carry would
-                // log "Could not reserve", and the taker couldn't eat it until that meal ends.
-                if (count >= item.stackCount && !toil.actor.CanReserve(item))
+                // if someone else has reserved it, usually the holder's current meal: the taker
+                // couldn't eat it until that meal ends.
+                if (count < 1 || (count >= item.stackCount && !toil.actor.CanReserve(item)))
                 {
                     toil.actor.jobs.EndCurrentJob(JobCondition.Incompletable);
                     return;
                 }
-                // TryDrop can merge into a stack already on the ground and hand back the bigger
-                // stack, and the carry takes up to job.count from it.
-                toil.actor.jobs.curJob.count = count;
-                holder.TryDrop(item, ThingPlaceMode.Near, count, out var droppedThing);
-                if (droppedThing == null)
+                // Straight from the holder's inventory into the taker's hands, the way vanilla takes
+                // food out of a pawn's own inventory. Dropping it first could merge it into food on
+                // the ground, so the taker carried off the wrong amount.
+                holder.TryTransferToContainer(item, toil.actor.carryTracker.innerContainer, count, out var taken, false);
+                if (taken == null)
                 {
                     Log.Warning($"Taker {toil.actor.Label} unable to take count {count} of thing {item.Label} from holder's inventory");
                     toil.actor.jobs.EndCurrentJob(JobCondition.Incompletable);
                 }
                 else if (indexToSet != 0)
                 {
-                    toil.actor.jobs.curJob.SetTarget(indexToSet, droppedThing);
+                    toil.actor.jobs.curJob.SetTarget(indexToSet, taken);
                 }
             }
         };
@@ -273,10 +274,12 @@ public static class ItemUtility
         {
             var actor = takeThing.actor;
             var thing = actor.CurJob.GetTarget(indItem).Thing;
-            if (actor.carryTracker.TryDropCarriedThing(actor.PositionHeld, ThingPlaceMode.Near, out var droppedThing))
+            var carried = actor.carryTracker.CarriedThing;
+            // Straight from the hands into the inventory. Dropping it first could merge it into food
+            // on the ground, and the whole merged stack would go into the inventory.
+            if (carried != null && actor.carryTracker.innerContainer.Remove(carried))
             {
-                droppedThing.DeSpawn();
-                actor.inventory.TryAddItemNotForSale(droppedThing);
+                actor.inventory.TryAddItemNotForSale(carried);
                 thing.def.soundPickup.PlayOneShot(new TargetInfo(actor.Position, actor.Map));
             }
             else

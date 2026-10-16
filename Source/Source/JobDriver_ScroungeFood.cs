@@ -47,7 +47,6 @@ namespace Hospitality
             yield return finalGoto;
             yield return AskForFood(TargetIndex.A, TargetIndex.B);
             yield return ItemUtility.TakeFromPawn(job.targetB.Thing, job.targetA.Pawn.inventory.innerContainer, job.count, TargetIndex.B);
-            yield return Toils_Haul.StartCarryThing(TargetIndex.B);
             yield return Toils_General.Wait(80);
             yield return ItemUtility.TakeToInventory(TargetIndex.B);
 

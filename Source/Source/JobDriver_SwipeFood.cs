@@ -21,7 +21,6 @@ public class JobDriver_SwipeFood : JobDriver
         yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.ClosestTouch);
         Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.ClosestTouch).socialMode = RandomSocialMode.Off;
         yield return ItemUtility.TakeFromPawn(job.targetB.Thing, job.targetA.Pawn.inventory.innerContainer, job.count, TargetIndex.B);
-        yield return Toils_Haul.StartCarryThing(TargetIndex.B);
         yield return Toils_General.Wait(150);
         yield return ItemUtility.TakeToInventory(TargetIndex.B);
     }
