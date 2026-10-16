@@ -30,5 +30,6 @@ namespace Hospitality.Utilities
         public static ThoughtDef GuestCheapFood;
         public static ThoughtDef GuestCantAffordBed;
         public static ThoughtDef GuestHasNoFood;
+        public static ReservationLayerDef Scrounge;
     }
 }
