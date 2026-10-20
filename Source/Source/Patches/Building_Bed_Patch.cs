@@ -5,6 +5,8 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
+// need Waylith equivalent, Texture2D - UPDATE
+
 namespace Hospitality.Patches
 {
 

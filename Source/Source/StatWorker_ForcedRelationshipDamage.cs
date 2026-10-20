@@ -1,7 +1,7 @@
 using System.Text;
 using Hospitality.Utilities;
 using RimWorld;
-using UnityEngine;
+using Waylith.Math;
 using Verse;
 using GuestUtility = Hospitality.Utilities.GuestUtility;
 

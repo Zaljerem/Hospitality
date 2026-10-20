@@ -114,9 +114,9 @@ public class JobGiver_ScroungeFood : ThinkNode_JobGiver
             if (awake && target.relations.OpinionOf(guest) < minAwakeOpinion) return false;
         }
 
-        // Default layer: food someone, such as the target, has reserved to eat. Scrounge layer:
-        // food another guest is already scrounging.
         var food = BestFoodInInventory(target, guest);
+        // PR #12: keep eating reservations separate from competing scroungers/swipers.
+        // Check both layers before offering a job; only reserve on our own layer in its driver.
         return food != null && guest.CanReserve(food, 1, GetAmount(food))
             && guest.CanReserve(food, 1, GetAmount(food), InternalDefOf.Scrounge);
     }

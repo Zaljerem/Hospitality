@@ -5,6 +5,8 @@ using Verse;
 using Verse.AI.Group;
 using GuestUtility = Hospitality.Utilities.GuestUtility;
 
+// need Waylith equivalents - UPDATE
+
 namespace Hospitality
 {
     public class ITab_Pawn_Guest : ITab_Pawn_Visitor

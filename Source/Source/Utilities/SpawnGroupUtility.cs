@@ -4,7 +4,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using RimWorld;
 using RimWorld.Planet;
-using UnityEngine;
+using Waylith.Math;
 using Verse;
 
 namespace Hospitality.Utilities;

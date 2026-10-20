@@ -6,11 +6,14 @@ using JetBrains.Annotations;
 using RimWorld;
 using RimWorld.Planet;
 using UnityEngine;
+//using Waylith.Math;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
 using Verse.Sound;
 using static System.String;
+
+// need Waylith equivalents - UPDATE
 
 namespace Hospitality.Utilities;
 
@@ -42,7 +45,8 @@ public static class GuestUtility
 
     private static readonly SimpleCurve recruitChanceOpinionCurve = [new CurvePoint(0f, 5), new CurvePoint(0.5f, 20), new CurvePoint(1f, 30)];
 
-    private static readonly Dictionary<int, bool> relatedCache = new();
+    // Relatedness belongs to a pair: a colonist can be related to one guest but not another.
+    private static readonly Dictionary<(Pawn colonist, Pawn guest), bool> relatedCache = new();
     private static int relatedCacheNextClearTick;
 
     private static RoyalTitleDef[] titleDefs;
@@ -85,6 +89,9 @@ public static class GuestUtility
 
         DistinctFactions = factions.GroupBy(f => f.def).Select(x => x.First()).ToArray();
         AllTitles = titles.Distinct().ToArray();
+        // Pawn references and the expiry tick belong to the current game, not the previous save.
+        relatedCache.Clear();
+        relatedCacheNextClearTick = 0;
         //Log.Message($"Hospitality: Read {DistinctFactions.Length} factions with royal titles, {AllTitles.Length} royal titles.");
     }
 
@@ -160,12 +167,12 @@ public static class GuestUtility
 
     public static int RecruitPenalty(this Pawn guest)
     {
-        return Mathf.RoundToInt(guest.GetStatValue(statRecruitRelationshipDamage));
+        return Waylith.Math.Mathf.RoundToInt(guest.GetStatValue(statRecruitRelationshipDamage));
     }
 
     public static int ForcedRecruitPenalty(this Pawn guest)
     {
-        return Mathf.RoundToInt(guest.GetStatValue(statForcedRecruitRelationshipDamage));
+        return Waylith.Math.Mathf.RoundToInt(guest.GetStatValue(statForcedRecruitRelationshipDamage));
     }
 
     public static int GetFriendsInColony(this Pawn guest)
@@ -187,10 +194,11 @@ public static class GuestUtility
             relatedCacheNextClearTick = GenTicks.TicksGame + GenDate.TicksPerHour * 3;
         }
 
-        if (!relatedCache.TryGetValue(pawn.thingIDNumber, out var isRelated))
+        var key = (pawn, guest);
+        if (!relatedCache.TryGetValue(key, out var isRelated))
         {
             isRelated = guest.relations.RelatedPawns.Any(rel => rel == pawn);
-            relatedCache.Add(pawn.thingIDNumber, isRelated);
+            relatedCache.Add(key, isRelated);
         }
 
         return isRelated;
@@ -210,7 +218,7 @@ public static class GuestUtility
     {
         var difficulty = guest.RecruitDifficulty();
 
-        return Mathf.RoundToInt(AdjustDifficulty(difficulty));
+        return Waylith.Math.Mathf.RoundToInt(AdjustDifficulty(difficulty));
     }
 
     private static float RecruitDifficulty(this Pawn guest)
@@ -423,7 +431,8 @@ public static class GuestUtility
         if (friendPercentage < 1 && ModSettings_Hospitality.enableRecruitNotification)
         {
             var newFriendPercentage = GetFriendPercentage(guest);
-            if (newFriendPercentage >= 1)
+            if (newFriendPercentage >= 1 && guest.MayRecruitRightNow()
+                && !guest.WillOnlyJoinByForce() && guest.Faction?.HasGoodwill == true)
             {
                 Messages.Message("GuestCanBeRecruitedNow".Translate(new NamedArgument { arg = guest, label = "PAWN" }).AdjustedFor(guest), guest, MessageTypeDefOf.NeutralEvent);
             }
@@ -432,9 +441,17 @@ public static class GuestUtility
 
     private static float GetFriendPercentage(Pawn guest)
     {
-        var friends = guest.GetFriendsInColony();
-        var friendsRequired = FriendsRequired(guest.MapHeld) + guest.GetEnemiesInColony();
-        return 1f * friends / friendsRequired;
+        // A charm adds social memories immediately, while ordinary relationship queries cache
+        // totals for 50+ ticks. Refresh this guest so the notification sees the actual crossing.
+        var cache = guest.GetMapComponent()?.RelationsCache;
+        if (cache == null) return 0;
+        var set = cache.RefreshFor(guest);
+        // Match the recruitment UI: royal guests require royal friend/enemy seniority.
+        var isRoyal = guest.royalty?.MostSeniorTitle != null;
+        var friends = isRoyal ? set.friendsSeniority : set.friends;
+        var required = isRoyal ? RoyalFriendsSeniorityRequired(guest) + set.enemiesSeniority
+            : cache.friendsRequired + set.enemies;
+        return required > 0 ? (float)friends / required : 0;
     }
 
     public static void Recruit(Pawn guest, int recruitPenalty, bool forced)
@@ -744,7 +761,7 @@ public static class GuestUtility
         recruiter.skills.Learn(SkillDefOf.Social, 25f);
         var pleaseChance = recruiter.GetStatValue(StatDefOf.NegotiationAbility);
         pleaseChance = AdjustPleaseChance(pleaseChance, recruiter, guest);
-        pleaseChance = Mathf.Clamp01(pleaseChance);
+        pleaseChance = Waylith.Math.Mathf.Clamp01(pleaseChance);
 
         var failedCharms = guest.CompGuest().failedCharms;
 
@@ -782,7 +799,7 @@ public static class GuestUtility
             failedCharms.Remove(recruiter);
 
             var statValue = recruiter.GetStatValue(statRecruitEffectivity);
-            var floor = Mathf.FloorToInt(statValue);
+            var floor = Waylith.Math.Mathf.FloorToInt(statValue);
             var multiplier = floor + (Rand.Value < statValue - floor ? 1 : 0);
 
             // Multiplier is for what the focus is on
@@ -810,6 +827,7 @@ public static class GuestUtility
         GainThought(guest, ThoughtDef.Named("GuestDismissiveAttitude"));
     }
 
+    // Find Waylith equivalent - UPDATE
     public static void DoAllowedAreaSelectors(Rect rect, Func<Area, string> getLabel, ref Area currentArea, Map map)
     {
         var areas = GetAreas(map).ToArray();

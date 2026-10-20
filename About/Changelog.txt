@@ -30,4 +30,18 @@
 
 1.1.5 - 9/27/2026 - fix to food scrounge code, thanks mrbeverage!
 
-1.1.6 - 9/27/2026 - updated to 1.7
+1.1.6 - 9/27/2026 - updated to 1.7, fixes by jjanow, thanks!
+
+1.1.7 - 10/20/2026 - Major update!
+
+- Fixed food-swiping guests failing to approach sleepers, and made them stop if the target wakes before food is taken. **Thanks to mrbeverage!**
+- Guests now arrive with 75–100% rest, reducing immediate outdoor sleeping when they cannot afford a bed.
+- Improved performance during guest social interactions, shopping, and bed selection.
+- Reduced unnecessary work scans when no guests are present.
+- Reduced repeated relationship calculations and guest-bed UI work.
+- Optimized inventory-capacity checks for Combat Extended compatibility.
+- Fixed recruitment-ready notifications, including checks for royal guests.
+- Improved handling of temporarily unusable guest beds to help prevent repeated sleep-job failures.
+- Fixed Soft Warm Beds compatibility: bedding now survives conversion between normal and guest beds and displays correctly.
+- Fixed food-scrounging reservations blocking the food owner's meal.
+- Fixed food transfers taking incorrect quantities or merging with nearby ground stacks, and respected guests' carrying limits. **Thanks to mrbeverage for these scrounging fixes!**

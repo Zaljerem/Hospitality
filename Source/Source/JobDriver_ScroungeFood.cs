@@ -18,9 +18,8 @@ namespace Hospitality
             //if (!pawn.Reserve(job.GetTarget(TargetIndex.A), job, 1, -1, null, errorOnFailed))
             //    return false;
 
-            // Reserve the food (B) on our own layer, which other scroungers check in
-            // JobGiver_ScroungeFood.Qualifies. The target picks its own inventory food without
-            // checking reservations, so on the default layer this stopped its meal from starting.
+            // PR #12: a default-layer reservation prevents the owner's own Ingest job from
+            // starting. A separate layer excludes competing guests without blocking that meal.
             if (job.GetTarget(TargetIndex.B).IsValid)
             {
                 if (!pawn.Reserve(job.GetTarget(TargetIndex.B), job, 1, job.count, InternalDefOf.Scrounge, errorOnFailed))
@@ -47,6 +46,7 @@ namespace Hospitality
             yield return finalGoto;
             yield return AskForFood(TargetIndex.A, TargetIndex.B);
             yield return ItemUtility.TakeFromPawn(job.targetB.Thing, job.targetA.Pawn.inventory.innerContainer, job.count, TargetIndex.B);
+            // PR #12: TakeFromPawn now transfers directly into the carry container.
             yield return Toils_General.Wait(80);
             yield return ItemUtility.TakeToInventory(TargetIndex.B);
 

@@ -5,6 +5,8 @@ using RimWorld.Planet;
 using UnityEngine;
 using Verse;
 
+// need Waylith equivalents - UPDATE
+
 namespace Hospitality.MainTab;
 
 public class MainTabWindow_Hospitality : MainTabWindow_PawnTable

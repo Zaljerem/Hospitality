@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Text;
 using RimWorld;
-using UnityEngine;
+using Waylith;
 using Verse;
 
 namespace Hospitality
@@ -24,10 +24,10 @@ namespace Hospitality
 
         public override AlertReport GetReport()
         {
-            if (Time.realtimeSinceStartup >= nextCacheUpdate)
+            if (Time.RealtimeSinceStartup >= nextCacheUpdate)
             {
                 UpdateAffectedPawnsCache();
-                nextCacheUpdate = Time.realtimeSinceStartup + 1 + 0.01f * (Hash % 25);
+                nextCacheUpdate = Time.RealtimeSinceStartup + 1 + 0.01f * (Hash % 25);
             }
             return affectedPawnCache.Any() ? AlertReport.CulpritsAre(affectedPawnCache) : AlertReport.Inactive;
         }

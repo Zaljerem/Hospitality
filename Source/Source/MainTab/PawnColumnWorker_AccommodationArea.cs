@@ -2,6 +2,8 @@ using Hospitality.Utilities;
 using UnityEngine;
 using Verse;
 
+// need Waylith equivalent - UPDATE
+
 namespace Hospitality.MainTab;
 
 internal class PawnColumnWorker_AccommodationArea : PawnColumnWorker_AreaBase

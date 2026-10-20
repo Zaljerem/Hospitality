@@ -11,6 +11,9 @@ namespace Hospitality.Patches
         public static void Postfix()
         {
             ThoughtResultCache.Reset();
+            // Relationship tooltips also contain save-specific pawn data, even if a load reuses
+            // the current Game object and its tick happens to be inside the refresh interval.
+            RelationUtility.Reset();
         }
     }
 }

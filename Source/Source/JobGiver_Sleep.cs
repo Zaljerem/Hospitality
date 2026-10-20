@@ -58,12 +58,16 @@ namespace Hospitality
             }
 
             var compGuest = pawn.CompGuest();
+            Building_GuestBed bed = null;
             if (compGuest != null && compGuest.HasBed)
             {
-                return new ThinkResult(new Job(JobDefOf.LayDown, compGuest.bed), this);
+                // Ownership alone does not guarantee that LayDown can use/reserve/reach this bed.
+                // Avoid repeatedly issuing a job that immediately fails its bed checks. Keep the
+                // paid claim intact; use the ground fallback until the claimed bed is usable again.
+                if (RestUtility.IsValidBedFor(compGuest.bed, pawn, pawn, checkSocialProperness: false))
+                    return new ThinkResult(new Job(JobDefOf.LayDown, compGuest.bed), this);
             }
-
-            var bed = pawn.FindBedFor();
+            else bed = pawn.FindBedFor();
 
             if (bed != null)
             {
@@ -78,7 +82,8 @@ namespace Hospitality
             }
             //Log.Message($"No bed available for {pawn.LabelShort}.");
             IntVec3 vec = CellFinder.RandomClosewalkCellNear(pawn.Position, pawn.MapHeld, 4);
-            if(!pawn.CanReserve(vec)) return ThinkResult.NoJob;
+            // The fallback must be reachable as well as reservable, or it can fail immediately too.
+            if(!pawn.CanReserveAndReach(vec, PathEndMode.OnCell, Danger.Some)) return ThinkResult.NoJob;
 
             return new ThinkResult(new Job(JobDefOf.LayDown, vec), this);
         }

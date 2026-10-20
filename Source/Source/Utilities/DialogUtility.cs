@@ -4,6 +4,8 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
+// need Waylith equivalents - UPDATE
+
 namespace Hospitality.Utilities
 {
     internal static class DialogUtility

@@ -2,13 +2,15 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
+// need Waylith equivalents - UPDATE
+
 namespace Hospitality.MainTab;
 
 public class PawnColumnWorker_Faction : PawnColumnWorker_Text
 {
     public override int GetOptimalWidth(PawnTable table)
     {
-        return Mathf.Clamp(200, GetMinWidth(table), GetMaxWidth(table));
+        return Waylith.Math.Mathf.Clamp(200, GetMinWidth(table), GetMaxWidth(table));
     }
 
     public override void DoCell(Rect rect, Pawn pawn, PawnTable table)

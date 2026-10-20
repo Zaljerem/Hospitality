@@ -6,6 +6,8 @@ using Verse;
 using Verse.Sound;
 using Hospitality.Utilities;
 
+// need Waylith equivalents - UPDATE
+
 namespace Hospitality.MainTab
 {
     // Copied from AreaAllowedGUI - wish RimWorld had already made this more generic

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using RimWorld;
-using UnityEngine;
+using Waylith.Math;
 using Verse;
 using Verse.AI;
 
@@ -19,11 +19,20 @@ internal static class BedUtility
         var silver = guest.inventory.innerContainer.FirstOrDefault(i => i.def == ThingDefOf.Silver);
         var money = silver?.stackCount ?? 0;
 
-        var beds = FindAvailableBeds(guest, money);
-        // Log.Message($"Found {beds.Count()} guest beds that {guest.LabelShort} can afford (<= {money} silver).");
-        if (!beds.Any()) return null;
-
-        return SelectBestBed(beds, guest, money);
+        Building_GuestBed bestBed = null;
+        var bestValue = float.NegativeInfinity;
+        // Search once: Any() followed by MaxBy() restarted availability checks, including
+        // reachability/bed validity and owner opinions for the prefix through the first match.
+        foreach (var bed in guest.MapHeld.GetGuestBeds(guest.GetGuestArea()))
+        {
+            if (!IsAvailableBed(bed, guest, money, out var sharingScore)) continue;
+            var value = CalculateBedValue(bed, guest, money, sharingScore);
+            // Enumerable.MaxBy kept the first bed on equal scores; retain that tie order.
+            if (bestBed != null && value <= bestValue) continue;
+            bestBed = bed;
+            bestValue = value;
+        }
+        return bestBed;
     }
 
     [NotNull]
@@ -42,13 +51,9 @@ internal static class BedUtility
         return bed.CompAssignableToPawn.AssignedPawnsForReading;
     }
 
-    private static IEnumerable<Building_GuestBed> FindAvailableBeds(Pawn guest, int money)
+    private static bool IsAvailableBed(Building_GuestBed bed, Pawn guest, int money, out int sharingScore)
     {
-        return guest.MapHeld.GetGuestBeds(guest.GetGuestArea()).Where(bed => IsAvailableBed(bed, guest, money));
-    }
-
-    private static bool IsAvailableBed(Building_GuestBed bed, Pawn guest, int money)
-    {
+        sharingScore = 0;
         if (bed.RentalFee > money) return false;
         if (bed.IsForbidden(guest)) return false;
         if (bed.IsBurning()) return false;
@@ -56,30 +61,35 @@ internal static class BedUtility
         //Log.Message($"{guest.LabelShort} is checking {bed.Label} at {bed.Position}. SleepingSlots = {bed.SleepingSlotsCount}, Owners = {bed.Owners().Count}, Ideology forbids = {bed.CompAssignableToPawn.IdeoligionForbids(guest)}, AnyUnowned = {bed.AnyUnownedSleepingSlot}, CanReserve (with slots) = {guest.CanReserveAndReach(bed, PathEndMode.OnCell, Danger.Some, bed.SleepingSlotsCount)} CanReserve (without) = {guest.CanReserveAndReach(bed, PathEndMode.OnCell, Danger.Some)}");
         if (!bed.AnyUnownedSleepingSlot) return false;
         if (bed.CompAssignableToPawn.IdeoligionForbids(guest)) return false;
-        if (!guest.CanReserveAndReach(bed, PathEndMode.OnCell, Danger.Some, bed.SleepingSlotsCount)) return false;
-        if (OtherOwnerScore(bed, guest) < 0) return false;
+        // Align candidate selection with the bed usability checks used by the LayDown driver.
+        // A free slot and a reachable bed can still be unusable due to current pawn/bed state.
+        if (!RestUtility.IsValidBedFor(bed, guest, guest, checkSocialProperness: false)) return false;
+        sharingScore = OtherOwnerScore(bed, guest);
+        if (sharingScore < 0) return false;
         return true;
     }
 
-    private static Building_GuestBed SelectBestBed(IEnumerable<Building_GuestBed> beds, Pawn guest, int money)
+    public static float CalculateBedValue(this Building_GuestBed bed, Pawn guest, int money)
     {
-        return beds.MaxBy(bed => bed.CalculateBedValue(guest, money));
+        return CalculateBedValue(bed, guest, money, OtherOwnerScore(bed, guest));
     }
 
-    public static float CalculateBedValue(this Building_GuestBed bed, Pawn guest, int money)
+    private static float CalculateBedValue(Building_GuestBed bed, Pawn guest, int money, int sharingScore)
     {
         StaticBedValue(bed, out var room, out var quality, out var impressiveness, out var roomType, out var comfort, out var facilities);
 
         var fee = Mathf.RoundToInt(money > 0 ? 250 * (1f * bed.RentalFee / money) : 0); // 0 - 250
 
         //Ideology
-        var ideologyNeeds = Ideology_GetFulfillment(bed, guest); // -150 - 50
+        var ideologyNeeds = Ideology_GetFulfillment(bed, guest, sharingScore); // -150 - 50
 
         // Royalty requires single bed?
         var royalExpectations = GetRoyalExpectations(bed, guest, room, out var title);
 
         // Shared
-        var otherPawnOpinion = OtherOwnerScore(bed, guest); // -340 - 340
+        // Availability already inspected these owners/reservations in this synchronous search.
+        // Reuse that result locally; do not cache it across ownership or reservation changes.
+        var otherPawnOpinion = sharingScore; // -340 - 340
 
         // Temperature
         var temperature = GetTemperatureScore(guest, room, bed); // -200 - 0
@@ -129,7 +139,7 @@ internal static class BedUtility
         return building.TryGetComp<CompAffectedByFacilities>()?.LinkedFacilitiesListForReading.Count * 10 ?? 0;
     }
 
-    private static int Ideology_GetFulfillment(Building_Bed bed, Pawn guest)
+    private static int Ideology_GetFulfillment(Building_Bed bed, Pawn guest, int sharingScore)
     {
         if (!ModsConfig.IdeologyActive) return 0;
         if (guest.ideo == null || bed == null) return 0;
@@ -137,7 +147,8 @@ internal static class BedUtility
         var score = 0;
 
         // If there's someone already using this bed, and we're willing to share, affect score accordingly
-        score += OtherOwnerScore(bed, guest);
+        // Preserve the existing additional ideology contribution, including its weight.
+        score += sharingScore;
 
         var requiredFacilities = guest.Ideo.PreceptsListForReading.SelectMany(p => p.def.comps.Select(c => (c as PreceptComp_BedThought)?.requireFacility?.def)).ToList();
         if (requiredFacilities.Any())

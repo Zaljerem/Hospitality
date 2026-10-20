@@ -2,10 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using HarmonyLib;
 using JetBrains.Annotations;
 using RimWorld;
-using UnityEngine;
+using Waylith.Math;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
@@ -238,27 +237,23 @@ public static class ItemUtility
             else
             {
                 count = count < 0 ? toil.actor.jobs.curJob.count : count;
-                // The holder may have eaten some since the job started, and the taker can only carry
-                // so much.
+                // PR #12: the holder may have eaten some while we approached. Cap to what
+                // remains and what fits in the hands, without dropping/merging food on the map.
                 count = Mathf.Min(count, Mathf.Min(item.stackCount, toil.actor.carryTracker.AvailableStackSpace(item.def)));
-                // Taking the whole stack moves the item itself, with any reservation on it. Leave it
-                // if someone else has reserved it, usually the holder's current meal: the taker
-                // couldn't eat it until that meal ends.
+                // A whole-stack move would also move any default-layer eating reservation.
+                // Partial takes leave that reserved original stack with its owner.
                 if (count < 1 || (count >= item.stackCount && !toil.actor.CanReserve(item)))
                 {
                     toil.actor.jobs.EndCurrentJob(JobCondition.Incompletable);
                     return;
                 }
-                // Straight from the holder's inventory into the taker's hands, the way vanilla takes
-                // food out of a pawn's own inventory. Dropping it first could merge it into food on
-                // the ground, so the taker carried off the wrong amount.
                 holder.TryTransferToContainer(item, toil.actor.carryTracker.innerContainer, count, out var taken, false);
                 if (taken == null)
                 {
                     Log.Warning($"Taker {toil.actor.Label} unable to take count {count} of thing {item.Label} from holder's inventory");
                     toil.actor.jobs.EndCurrentJob(JobCondition.Incompletable);
                 }
-                else if (indexToSet != 0)
+                else if (indexToSet != TargetIndex.None) // Respect the helper's optional target parameter.
                 {
                     toil.actor.jobs.curJob.SetTarget(indexToSet, taken);
                 }
@@ -273,14 +268,20 @@ public static class ItemUtility
         takeThing.initAction = delegate
         {
             var actor = takeThing.actor;
-            var thing = actor.CurJob.GetTarget(indItem).Thing;
             var carried = actor.carryTracker.CarriedThing;
-            // Straight from the hands into the inventory. Dropping it first could merge it into food
-            // on the ground, and the whole merged stack would go into the inventory.
-            if (carried != null && actor.carryTracker.innerContainer.Remove(carried))
+            // PR #12: hands -> inventory directly, so nearby ground stacks cannot merge into
+            // the share. Check acceptance because TryAddItemNotForSale has no return value.
+            if (carried != null && actor.inventory != null && actor.carryTracker.innerContainer.Remove(carried))
             {
                 actor.inventory.TryAddItemNotForSale(carried);
-                thing.def.soundPickup.PlayOneShot(new TargetInfo(actor.Position, actor.Map));
+                if (!actor.inventory.innerContainer.Contains(carried))
+                {
+                    // Preserve the food in the hands if another mod rejects inventory insertion.
+                    actor.carryTracker.innerContainer.TryAdd(carried, false);
+                    actor.jobs.EndCurrentJob(JobCondition.Incompletable);
+                    return;
+                }
+                carried.def.soundPickup.PlayOneShot(new TargetInfo(actor.Position, actor.Map));
             }
             else
             {
@@ -292,8 +293,6 @@ public static class ItemUtility
 
     #region Combat Extended integration
 
-    private static MethodBase canFitInInventory;
-
     public static int GetInventorySpaceFor(this Pawn pawn, Thing current)
     {
         if (pawn == null || current == null) return 0;
@@ -301,32 +300,17 @@ public static class ItemUtility
         var inventory = pawn.GetInventory();
         if (inventory == null) return current.stackCount;
 
-        object[] arguments = [current, 0, false, true];
-
-        try
-        {
-            canFitInInventory ??= AccessTools.GetDeclaredMethods(inventory.GetType()).First(x => x.Name == "CanFitInInventory" && x.GetParameters()[0].ParameterType == typeof(Thing));
-
-            if (canFitInInventory == null)
-            {
-                Log.ErrorOnce("CanFitInInventory not found.", 4363476);
-                return current.stackCount;
-            }
-
-            var success = (bool)canFitInInventory.Invoke(inventory, arguments);
-            if (!success) return 0;
-            return (int)arguments[1];
-        }
-        catch (Exception e)
-        {
-            Log.Error(e.StackTrace);
-            return current.stackCount;
-        }
+        // Bind the optional API once per component; repeated item checks use a typed delegate.
+        return InventoryCapacityCompatibility.GetSpace(inventory, current);
     }
 
     private static ThingComp GetInventory(this Pawn pawn)
     {
-        return pawn.AllComps.FirstOrDefault(c => c.GetType().Name == "CompInventory");
+        // Avoid the predicate/enumerator path for this frequently repeated optional-comp probe.
+        var comps = pawn.AllComps;
+        for (var i = 0; i < comps.Count; i++)
+            if (comps[i].GetType().Name == "CompInventory") return comps[i];
+        return null;
     }
 
     #endregion

@@ -17,7 +17,11 @@ namespace Hospitality
 
         public override bool ShouldSkip(Pawn pawn, bool forced = false)
         {
-            return pawn?.WorkTagIsDisabled(def.workType.workTags) ?? true;
+            if (pawn?.WorkTagIsDisabled(def.workType.workTags) ?? true) return true;
+            // ViableGuestTarget requires membership in this same map's PresentGuests set.
+            // Avoid scanning all pawns when none can qualify, without caching a result that
+            // could hide newly arrived guests. Missing components retain the old behavior.
+            return pawn.GetMapComponent()?.PresentGuests.Count == 0;
         }
 
         public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)

@@ -2,6 +2,8 @@
 using UnityEngine;
 using Verse;
 
+// need Waylith equivalents - UPDATE
+
 namespace Hospitality
 {
     public class Gizmo_VendingMachineContent : Gizmo_ModifyNumber<CompVendingMachine>

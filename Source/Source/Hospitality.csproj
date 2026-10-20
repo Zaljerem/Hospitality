@@ -2,7 +2,7 @@
   <PropertyGroup>
     <AssemblyName>Hospitality</AssemblyName>
     <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
   </PropertyGroup>
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
@@ -14,7 +14,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4494-beta" />
      <PackageReference Include="Lib.Harmony" ExcludeAssets="runtime">
             <Version>2.4.2</Version>
         </PackageReference>	   
@@ -22,7 +21,19 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="0MultiplayerAPI">
-      <HintPath>..\..\..\..\..\Users\conse\Desktop\!Reference Assemblies\0MultiplayerAPI.dll</HintPath>
+      <HintPath>..\..\..\..\Users\conse\Desktop\!Mod Reference Assemblies\0MultiplayerAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\..\Users\conse\Desktop\!17\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityStubs">
+      <HintPath>..\..\..\..\..\Users\conse\Desktop\!17\UnityStubs.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Waylith">
+      <HintPath>..\..\..\..\..\Users\conse\Desktop\!17\Waylith.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

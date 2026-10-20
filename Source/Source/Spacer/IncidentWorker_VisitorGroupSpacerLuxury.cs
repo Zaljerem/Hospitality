@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿using Verse;
 
 namespace Hospitality.Spacer
 {
@@ -6,7 +6,7 @@ namespace Hospitality.Spacer
     {
         protected override int GetGroupSize()
         {
-            return Verse.Rand.Range(2, 6);
+            return Rand.Range(2, 6);
         }
     }
 }

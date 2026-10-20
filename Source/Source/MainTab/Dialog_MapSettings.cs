@@ -2,6 +2,8 @@ using Hospitality.Utilities;
 using UnityEngine;
 using Verse;
 
+// need Waylith equivalents - update
+
 namespace Hospitality.MainTab
 {
     public class Dialog_MapSettings : Window

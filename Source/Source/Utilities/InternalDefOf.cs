@@ -22,6 +22,9 @@ namespace Hospitality.Utilities
         public static JobDef ClaimGuestBed;
         public static JobDef ScroungeFood;
         public static JobDef SwipeFood;
+        // Property rather than an injected field: the source-only build has a startup fallback
+        // for PR #12's XML definition, and must not emit a missing-DefOf error before it runs.
+        public static ReservationLayerDef Scrounge => ScroungeReservationLayer.Def;
         public static RoomRoleDef GuestRoom;
         public static SpecialThingFilterDef AllowRotten;
         public static JoyGiverDef BuyFood;
@@ -30,6 +33,5 @@ namespace Hospitality.Utilities
         public static ThoughtDef GuestCheapFood;
         public static ThoughtDef GuestCantAffordBed;
         public static ThoughtDef GuestHasNoFood;
-        public static ReservationLayerDef Scrounge;
     }
 }

@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Hospitality.Utilities;
 using RimWorld;
-using UnityEngine;
+using Waylith.Math;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
 using Verse.Sound;
+
+//VERIFY
 
 namespace Hospitality;
 
@@ -78,7 +80,8 @@ public class JobDriver_BuyItem : JobDriver
 
         // Changed formula a bit, so guests are less likely to leave small stacks if they can afford it
         var maxWanted = Rand.RangeInclusive(1, maxAffordable);
-        var count = Mathf.Min(Item.stackCount, maxSpace, maxWanted);
+        //verify cast
+        var count = (int)(Mathf.Min(Item.stackCount, maxSpace, maxWanted));
 
         var price = Mathf.CeilToInt(count * itemCost);
 

@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
 using UnityEngine;
+using Waylith.Math;
 using Verse;
+
+// find out Waylith equivalent/handling for Texture2D - UPDATE
 
 namespace Hospitality;
 
@@ -67,12 +70,12 @@ public class CompVendingMachine : ThingComp, IThingHolder
 
     internal void SetPrice(int value)
     {
-        basePrice = Mathf.Clamp(value, 0, int.MaxValue);
+        basePrice = Waylith.Math.Mathf.Clamp(value, 0, int.MaxValue);
     }
 
     internal void SetEmptyThreshold(int value)
     {
-        emptyThreshold = Mathf.Clamp(value, 0, int.MaxValue);
+        emptyThreshold = Waylith.Math.Mathf.Clamp(value, 0, int.MaxValue);
     }
 
     public override void PostExposeData()
@@ -97,7 +100,7 @@ public class CompVendingMachine : ThingComp, IThingHolder
 
     public void ReceivePayment(ThingOwner<Thing> inventoryContainer, Thing silver)
     {
-        inventoryContainer.TryTransferToContainer(silver, MainContainer, Mathf.CeilToInt(CurrentPrice));
+        inventoryContainer.TryTransferToContainer(silver, MainContainer, Waylith.Math.Mathf.CeilToInt(CurrentPrice));
     }
 
     public bool CanAffordFast(Pawn buyerGuest, out Thing silver)
@@ -181,7 +184,7 @@ public class Vendable
     private static Vendable ConvertToVendable(ThingWithComps thing)
     {
         if (thing is Building_NutrientPasteDispenser dispenser)
-            return new Vendable(() => Mathf.CeilToInt(dispenser.DispensableDef.BaseMarketValue));
+            return new Vendable(() => Waylith.Math.Mathf.CeilToInt(dispenser.DispensableDef.BaseMarketValue));
 
         return new Vendable(null);
     }

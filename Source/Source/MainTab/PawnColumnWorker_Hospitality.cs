@@ -1,6 +1,6 @@
 using Hospitality.Utilities;
 using RimWorld;
-using UnityEngine;
+using Waylith.Math;
 using Verse;
 
 namespace Hospitality.MainTab

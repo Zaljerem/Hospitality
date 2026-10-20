@@ -4,6 +4,8 @@ using UnityEngine;
 using Verse;
 using GuestUtility = Hospitality.Utilities.GuestUtility;
 
+// need Waylith equivalents - UPDATE
+
 namespace Hospitality.MainTab
 {
     public class PawnColumnWorker_FriendsForRecruiting : PawnColumnWorker_Text
@@ -20,6 +22,7 @@ namespace Hospitality.MainTab
 
             UpdateCache(pawn);
 
+            // Draw the text once. The old fallback drew it a second time for every non-recruitable row.
             base.DoCell(rect, pawn, table);
 
             bool CheckCanRecruit() 
@@ -42,7 +45,6 @@ namespace Hospitality.MainTab
                     ITab_Pawn_Guest.RecruitDialog(pawn, false);
                 }
             }
-            else base.DoCell(rect, pawn, table);
         }
 
         public override string GetTextFor(Pawn pawn)

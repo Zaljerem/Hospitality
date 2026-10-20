@@ -2,6 +2,9 @@
 using UnityEngine;
 using Verse;
 
+
+// need Waylith equivalents - UPDATE
+
 namespace Hospitality
 {
     public class Gizmo_GuestBed : Gizmo_ModifyNumber<Building_GuestBed>

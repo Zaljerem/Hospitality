@@ -92,7 +92,9 @@ public static class Hospitality_SpecialInjector
                 guestBedDef.drawerType = DrawerType.MapMeshAndRealTime;
 
                 // NEW: attach extension
-                guestBedDef.modExtensions ??= new List<DefModExtension>();
+                // Reflection copied the list reference; give the guest def its own list before appending.
+                // Otherwise the original bed also receives the guest-only extension.
+                guestBedDef.modExtensions = bedDef.modExtensions != null ? new List<DefModExtension>(bedDef.modExtensions) : new List<DefModExtension>();
                 guestBedDef.modExtensions.Add(new GuestBedExtension { originalBed = bedDef });
 
                 var takenHashes = ShortHashGiver.takenHashesPerDeftype[typeof(ThingDef)];

@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using Verse;
 
+// need Waylith equivalents - UPDATE
+
 namespace Hospitality;
 
 public class ModSettings_Hospitality : ModSettings

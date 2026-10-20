@@ -4,6 +4,8 @@ using UnityEngine;
 using Verse;
 using GuestUtility = Hospitality.Utilities.GuestUtility;
 
+//need Waylith equivalents - UPDATE
+
 namespace Hospitality
 {
     public static class BedStatsDrawer

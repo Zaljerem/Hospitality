@@ -73,8 +73,6 @@ public class Hospitality_MapComponent : MapComponent
                            !visit.leaving));
         }
 
-        MainTabWindowUtility.NotifyAllPawnTables_PawnsChanged();
-
         PresentGuests.Clear();
         if (PresentLords.Count > 0)
         {
@@ -84,6 +82,8 @@ public class Hospitality_MapComponent : MapComponent
                 .SelectMany(l => l.ownedPawns)
                 .Where(p => p != null)); // Also ensure individual pawns aren't null
         }
+        // Notify after rebuilding both collections so consumers see the complete new guest list.
+        MainTabWindowUtility.NotifyAllPawnTables_PawnsChanged();
     }
 
 

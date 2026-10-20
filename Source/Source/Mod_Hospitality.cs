@@ -4,6 +4,8 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
+// need Waylith equivalent - Rect - UPDATE
+
 namespace Hospitality;
 
 public class Mod_Hospitality : Mod

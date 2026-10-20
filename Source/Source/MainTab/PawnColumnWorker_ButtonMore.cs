@@ -2,6 +2,8 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
+// need Waylith equivalents - UPDATE
+
 namespace Hospitality.MainTab {
     public class PawnColumnWorker_ButtonMore : PawnColumnWorker
     {

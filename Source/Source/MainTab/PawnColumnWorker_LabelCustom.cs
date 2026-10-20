@@ -5,6 +5,8 @@ using UnityEngine;
 using Verse;
 using static System.String;
 
+// need Waylith equivalents - UPDATE
+
 namespace Hospitality.MainTab
 {
     public class PawnColumnWorker_LabelCustom : PawnColumnWorker_Label

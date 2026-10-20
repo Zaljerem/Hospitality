@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Hospitality.Utilities;
 using RimWorld;
-using UnityEngine;
+using Waylith.Math;
 using Verse;
 using Verse.AI;
 using FoodUtility = RimWorld.FoodUtility;
@@ -40,11 +40,11 @@ public class JoyGiver_BuyStuff : JoyGiver
         if (shoppingArea == null) return null;
 
         var map = pawn.MapHeld;
-        // Qualifies first: IsBuyableAtAll prices each thing, and most things in the area (walls, plants, filth) never qualify
-        var things = shoppingArea.ActiveCells.Where(cell => !HasRecentlyLookedAt(pawn, cell)).SelectMany(cell => map.thingGrid.ThingsListAtFast(cell))
-            .Where(t => t != null && Qualifies(t, pawn) && ItemUtility.IsBuyableAtAll(pawn, t)).ToList();
-        var storage = shoppingArea.ActiveCells.Where(cell => !HasRecentlyLookedAt(pawn, cell)).Select(cell => map.edificeGrid[cell]).OfType<Building_Storage>();
-        things.AddRange(storage.SelectMany(s => s.slotGroup.HeldThings.Where(t => Qualifies(t, pawn) && ItemUtility.IsBuyableAtAll(pawn, t))));
+        // Collect grid items and storage in one area traversal. The collector reuses expensive
+        // buyability results only within this search, keeping duplicate entries and their order
+        // so the existing random sampling probabilities are preserved.
+        var things = ShoppingSearchUtility.CollectCandidates(pawn, shoppingArea,
+            cell => HasRecentlyLookedAt(pawn, cell), thing => Qualifies(thing, pawn));
         if (things.Count == 0) return null;
         var requiresFoodFactor = GuestUtility.GetRequiresFoodFactor(pawn);
 

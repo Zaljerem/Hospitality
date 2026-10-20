@@ -4,6 +4,8 @@ using Hospitality.Utilities;
 using UnityEngine;
 using Verse;
 
+// need Waylith equivalents - UPDATE
+
 namespace Hospitality
 {
     public abstract class Gizmo_ModifyNumber<T> : Gizmo

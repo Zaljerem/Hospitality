@@ -4,27 +4,33 @@ using System.Linq;
 using System.Text;
 using Hospitality.Utilities;
 using RimWorld;
-using UnityEngine;
+//using UnityEngine;
+using Waylith.Math;
 using Verse;
 using BedUtility = Hospitality.Utilities.BedUtility;
 using GuestUtility = Hospitality.Utilities.GuestUtility;
+
+// Waylith equivalents needed ... Building_Bed still uses UnityEngine though, so ... - UPDATE
 
 namespace Hospitality;
 
 public class Building_GuestBed : Building_Bed
 {
     internal const int FeeStep = 5;
-    private static readonly Color sheetColorForGuests = new(89 / 255f, 55 / 255f, 121 / 255f);
+    private static readonly UnityEngine.Color sheetColorForGuests = new(89 / 255f, 55 / 255f, 121 / 255f);
 
     public int previousRoyaltyUpdate;
 
     private int rentalFee;
 
+    // Temporary developer A/B test; intentionally not saved so loading restores guest coloring.
+    internal bool debugUseBaseSheetColor;
+
     public int MoodEffect => Mathf.RoundToInt(rentalFee * -0.1f);
 
-    public override Color DrawColor => def.MadeFromStuff ? base.DrawColor : DrawColorTwo;
+    public override UnityEngine.Color DrawColor => def.MadeFromStuff ? base.DrawColor : DrawColorTwo;
 
-    public override Color DrawColorTwo => sheetColorForGuests;
+    public override UnityEngine.Color DrawColorTwo => debugUseBaseSheetColor ? base.DrawColorTwo : sheetColorForGuests;
 
     public BedStats Stats { get; } = new();
 
@@ -53,6 +59,8 @@ public class Building_GuestBed : Building_Bed
 
     public override void TickLong()
     {
+        // Optional bedding filters still need maintenance despite this bed's long-tick scheduling.
+        SoftWarmBedsCompatibility.TickBed(this);
         UpdateStats();
 
         // Remove owners that weren't properly cleared
@@ -119,7 +127,10 @@ public class Building_GuestBed : Building_Bed
         {
             if (room != null)
             {
-                return GuestUtility.AllTitles.Where(t => t.bedroomRequirements.NullOrEmpty() || (IsSingleBedroom(room) && t.bedroomRequirements.All(req => req.Met(room)))).ToArray();
+                // All titles inspect the same room during this refresh. Scan its beds once,
+                // rather than once for each title with bedroom requirements.
+                var isSingleBedroom = IsSingleBedroom(room);
+                return GuestUtility.AllTitles.Where(t => t.bedroomRequirements.NullOrEmpty() || (isSingleBedroom && t.bedroomRequirements.All(req => req.Met(room)))).ToArray();
             }
         }
         catch (Exception e)
@@ -189,7 +200,9 @@ public class Building_GuestBed : Building_Bed
             //if(notFirst) stringBuilder.AppendLine();
         }
 
-        return stringBuilder.ToString();
+        // This override bypasses Building_Bed.GetInspectString, where SWB normally adds its
+        // bedding status. Reuse that optional integration without duplicating an existing postfix.
+        return SoftWarmBedsCompatibility.AppendInspectString(this, stringBuilder.ToString());
     }
 
     // Note to whoever wants to add to this method (hi jptrrs!):
@@ -238,6 +251,14 @@ public class Building_GuestBed : Building_Bed
         }
 
         yield return new Gizmo_GuestBed(beds);
+
+        // Optional developer capture for SWB blankets that stay made but stop appearing.
+        // Its temporary render probe is installed only when explicitly started with this button.
+        if (Prefs.DevMode)
+        {
+            yield return GuestBeddingDiagnostics.Command(this);
+            yield return GuestBeddingDiagnostics.ColorCommand(this);
+        }
 
         // Get base def
         var defName = def.defName.ReplaceFirst("Guest", string.Empty);
@@ -290,13 +311,6 @@ public class Building_GuestBed : Building_Bed
 
         var forPrisoners = bed.ForPrisoners; // Store this, since it changes during spawn
 
-        foreach (var pawn in bed.CurOccupants)
-        {
-            RestUtility.KickOutOfBed(pawn, bed);
-        }
-
-        bed.RemoveAllOwners();
-
         Building_Bed newBed;
         if (bed.IsGuestBed())
         {
@@ -310,6 +324,17 @@ public class Building_GuestBed : Building_Bed
             forPrisoners = false; // never for prisoners
         }
 
+        // Prepare bedding preservation before changing owners or spawning the replacement.
+        // Removing only this comp from the old bed prevents SWB's despawn hook from unmaking
+        // the bedding. The same comp keeps its loaded blanket/material/filter/flick state.
+        using var beddingTransfer = BedComponentTransfer.Begin(bed, newBed, SoftWarmBedsCompatibility.ComponentTypeName);
+
+        foreach (var pawn in bed.CurOccupants)
+        {
+            RestUtility.KickOutOfBed(pawn, bed);
+        }
+        bed.RemoveAllOwners();
+
         // Art gets destroyed when new bed spawns
         var compArt = bed.TryGetComp<CompArt>();
         var art = compArt?.Active != null && compArt.taleRef != null ? new { authorName = compArt.authorNameInt, title = compArt.titleInt, taleRef = new TaleReference { tale = compArt.taleRef.tale, seed = compArt.taleRef.seed } } : null;
@@ -318,6 +343,7 @@ public class Building_GuestBed : Building_Bed
 
         newBed.SetFactionDirect(bed.Faction);
         var spawnedBed = (Building_Bed)GenSpawn.Spawn(newBed, bed.Position, bed.Map, bed.Rotation);
+        beddingTransfer?.Commit(); // The old bed has been replaced; keep bedding on the new Thing.
         spawnedBed.HitPoints = bed.HitPoints;
         spawnedBed.ForPrisoners = forPrisoners;
         spawnedBed.Medical = false;

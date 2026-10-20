@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using HarmonyLib;
 using RimWorld;
 using Verse;
@@ -37,9 +36,13 @@ namespace Hospitality.Patches
                     __result = false;
                     return false;
                 }
-                var collection = ___pawn.MapHeld.mapPawns.AllPawnsSpawned.Where(IsInteractable); // Added
                 ___workingList.Clear();
-                ___workingList.AddRange(collection);
+                // Reuse the tracker list without allocating a LINQ iterator on each social search.
+                // Keep map order and the same shuffle so recipient selection is unchanged.
+                foreach (var candidate in ___pawn.MapHeld.mapPawns.AllPawnsSpawned)
+                {
+                    if (IsInteractable(candidate)) ___workingList.Add(candidate);
+                }
                 ___workingList.Shuffle();
                 List<InteractionDef> allDefsListForReading = DefDatabase<InteractionDef>.AllDefsListForReading;
                 foreach (var p in ___workingList)
@@ -47,11 +50,16 @@ namespace Hospitality.Patches
                     if (p != ___pawn && CanInteractNowWith(___pawn, p) && SocialInteractionUtility.CanReceiveRandomInteraction(p)
                         && !___pawn.HostileTo(p))
                     {
-                        var p1 = p;
+                        // The full recipient check above already established position, reservation
+                        // and visibility for this synchronous search. Only interaction-specific
+                        // permission varies while weighting definitions; do not repeat those scans.
                         if (
                             allDefsListForReading.TryRandomElementByWeight(
-                                x => !CanInteractNowWith(___pawn, p, x) ? 0f : x.Worker.RandomSelectionWeight(___pawn, p), out var result))
+                                x => !CanInteractForDefinition(___pawn, p, x) ? 0f : x.Worker.RandomSelectionWeight(___pawn, p), out var result))
                         {
+                            // Weight workers can be supplied by other mods. Recheck the selected
+                            // interaction once before committing in case one changed pawn/map state.
+                            if (!CanInteractNowWith(___pawn, p, result)) continue;
                             if (__instance.TryInteractWith(p, result))
                             {
                                 ___workingList.Clear();
@@ -82,7 +90,7 @@ namespace Hospitality.Patches
                 {
                     return false;
                 }
-                if (!SocialInteractionUtility.CanInitiateInteraction(pawn, interactionDef) || !SocialInteractionUtility.CanReceiveInteraction(recipient, interactionDef))
+                if (!CanInteractForDefinition(pawn, recipient, interactionDef))
                 {
                     return false;
                 }
@@ -96,6 +104,14 @@ namespace Hospitality.Patches
                     return false;
                 }
                 return true;
+            }
+
+            private static bool CanInteractForDefinition(Pawn pawn, Pawn recipient, InteractionDef interactionDef)
+            {
+                // Evaluate these for every definition: mods can impose different permissions
+                // for different interactions even when the two pawns can generally socialize.
+                return SocialInteractionUtility.CanInitiateInteraction(pawn, interactionDef)
+                    && SocialInteractionUtility.CanReceiveInteraction(recipient, interactionDef);
             }
 
             // Added to change InteractIntervalAbsoluteMin

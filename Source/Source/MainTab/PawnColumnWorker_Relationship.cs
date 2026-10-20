@@ -4,6 +4,8 @@ using UnityEngine;
 using Verse;
 using static Hospitality.Utilities.RelationUtility;
 
+// need Waylith equivalents - UPDATE
+
 namespace Hospitality.MainTab;
 
 [StaticConstructorOnStartup]

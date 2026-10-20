@@ -5,11 +5,13 @@ using Hospitality.Utilities;
 using JetBrains.Annotations;
 using RimWorld;
 using RimWorld.Planet;
-using UnityEngine;
+using Waylith.Math;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
 using GuestUtility = Hospitality.Utilities.GuestUtility;
+
+//VERIFY
 
 namespace Hospitality;
 
@@ -23,7 +25,7 @@ public class IncidentWorker_VisitorGroup : IncidentWorker_NeutralGroup
     /// <summary>
     ///     From year 1-6, increase for 0 to 6 as the optimal amount
     /// </summary>
-    private static float OptimalAmount => 1 + Mathf.Clamp(GenDate.YearsPassedFloat, 0f, 5f);
+    private static float OptimalAmount => 1 + Waylith.Math.Mathf.Clamp(GenDate.YearsPassedFloat, 0f, 5f);
 
     protected virtual float ChanceToKnowEachPawn => 0.75f;
 
@@ -32,17 +34,17 @@ public class IncidentWorker_VisitorGroup : IncidentWorker_NeutralGroup
         // if current standing is 100, 10 can be gained
         // if current standing is -100, 50 can be gained
         // then clamped.
-        return Mathf.Clamp(current + 30 - Offset(current), -100, 100);
+        return Waylith.Math.Mathf.Clamp(current + 30 - Offset(current), -100, 100);
     }
 
     public static float MaxAngerAmount(float current)
     {
-        return Mathf.Clamp(current - 30, -100, 100);
+        return Waylith.Math.Mathf.Clamp(current - 30, -100, 100);
     }
 
     private static float Offset(float current)
     {
-        return Mathf.Lerp(-20, 20, Mathf.InverseLerp(-100, 100, current));
+        return Waylith.Math.Mathf.Lerp(-20, 20, Waylith.Math.Mathf.InverseLerp(-100, 100, current));
     }
 
     //public override bool FactionCanBeGroupSource(Faction f, IncidentParms parms, bool desperate = false)
@@ -385,7 +387,10 @@ public class IncidentWorker_VisitorGroup : IncidentWorker_NeutralGroup
             {
                 if (parms.pawnKind != null) pawn.kindDef = parms.pawnKind;
                 var visitor = SpawnGroupUtility.SpawnVisitor(spawned, pawn, map, parms.spawnCenter);
-                if (visitor?.needs?.rest != null) visitor.needs.rest.CurLevel = Rand.Range(0.1f, 0.7f);
+                // Give arriving guests time to settle in before needing sleep. The old 10–70%
+                // range often triggered immediate ground sleeping when no affordable bed existed.
+                // Start above even the nighttime sleep threshold; normal rest loss still applies.
+                if (visitor?.needs?.rest != null) visitor.needs.rest.CurLevel = Rand.Range(0.75f, 1f);
             }
             catch (Exception e)
             {
@@ -403,7 +408,7 @@ public class IncidentWorker_VisitorGroup : IncidentWorker_NeutralGroup
     protected IEnumerable<Pawn> GetPawnsToSpawn(IncidentParms parms)
     {
         var totalAmount = parms.pawnCount > 0 ? parms.pawnCount : GetGroupSize();
-        var knownPawnAmount = Mathf.RoundToInt(totalAmount * ChanceToKnowEachPawn);
+        var knownPawnAmount = Waylith.Math.Mathf.RoundToInt(totalAmount * ChanceToKnowEachPawn);
 
         var options = SpawnGroupUtility.GetKnownPawns(parms).RandomlyUsingTitleAsChance().InRandomOrder().Take(knownPawnAmount).ToList();
 
@@ -470,7 +475,7 @@ public class IncidentWorker_VisitorGroup : IncidentWorker_NeutralGroup
     {
         //Log.Message($"Optimal amount of guests = {OptimalAmount}, max = {OptimalAmount * 16f/6}");
         var random = Rand.GaussianAsymmetric(OptimalAmount, 1.5f, 16f / 6);
-        return Mathf.Clamp(GenMath.RoundRandom(random), ModSettings_Hospitality.minGuestGroupSize, ModSettings_Hospitality.maxGuestGroupSize);
+        return Waylith.Math.Mathf.Clamp(GenMath.RoundRandom(random), ModSettings_Hospitality.minGuestGroupSize, ModSettings_Hospitality.maxGuestGroupSize);
     }
 
     private static IntVec3 GetSpot(Map map, Area guestArea, Pawn pawn)
@@ -517,7 +522,8 @@ public class IncidentWorker_VisitorGroup : IncidentWorker_NeutralGroup
 
             if (!unroofedOption.IsValid) unroofedOption = cell;
 
-            // We never have to calculate distance and reachability for more than a fixed amount of cells, but still have a decent chance for a nearby cell.
+            // Stop after 25 reachable roofed samples. Rejected/unroofed cells do not count,
+            // so reachability checks can still cover the whole area when suitable cells are scarce.
             // This can still lead to pawns traveling an annoyingly far distance through the base, if the closest cell is not easily reachable.
             if (samples >= 25) return closest;
         }
@@ -564,14 +570,14 @@ public class IncidentWorker_VisitorGroup : IncidentWorker_NeutralGroup
                 ? visitor.Faction.PlayerGoodwill / 2.0f
                 : Rand.Range(0, 50);
 
-            var wealthBase = Mathf.Max(10f, 10f + goodwillComponent);
+            var wealthBase = Waylith.Math.Mathf.Max(10f, 10f + goodwillComponent);
 
             var title = visitor.royalty?.MostSeniorTitle;
             if (title != null) wealthBase += title.def.seniority / 2.0f;
 
-            var multiplier = Mathf.Max(0.01f, ModSettings_Hospitality.silverMultiplier);
+            var multiplier = Waylith.Math.Mathf.Max(0.01f, ModSettings_Hospitality.silverMultiplier);
 
-            var amountS = Mathf.Max(10, Mathf.RoundToInt(
+            var amountS = Waylith.Math.Mathf.Max(10, Waylith.Math.Mathf.RoundToInt(
                 (wealthBase + visitor.ageTracker.AgeBiologicalYears / 5.0f) * multiplier
             ));
 
@@ -584,7 +590,7 @@ public class IncidentWorker_VisitorGroup : IncidentWorker_NeutralGroup
 
                 if (spaceFor > 0)
                 {
-                    money.stackCount = Mathf.Min(spaceFor, amountS);
+                    money.stackCount = Waylith.Math.Mathf.Min(spaceFor, amountS);
                     var success = visitor.inventory.innerContainer.TryAdd(money);
 
                     if (success)
@@ -639,8 +645,9 @@ public class IncidentWorker_VisitorGroup : IncidentWorker_NeutralGroup
                     continue;
                 }
 
+                // check Waylith for float to int - UPDATE
                 var uniquesAmount = item.TryGetComp<CompQuality>() != null ? 1 : item.def.stackLimit;
-                var maxItems = Mathf.Min(Mathf.FloorToInt(value / item.MarketValue), item.def.stackLimit, uniquesAmount);
+                var maxItems = (int)(Mathf.Min(Mathf.FloorToInt(value / item.MarketValue), item.def.stackLimit, uniquesAmount));
                 var minItems = Mathf.Max(1, Mathf.CeilToInt(Rand.Range(50, 100) / item.MarketValue));
 
                 if (maxItems < 1 || minItems > maxItems)
@@ -656,7 +663,7 @@ public class IncidentWorker_VisitorGroup : IncidentWorker_NeutralGroup
                 var spaceFor = visitor.GetInventorySpaceFor(item);
                 if (spaceFor > 0)
                 {
-                    item.stackCount = Mathf.Min(spaceFor, item.stackCount);
+                    item.stackCount = Waylith.Math.Mathf.Min(spaceFor, item.stackCount);
                     var success = visitor.inventory.innerContainer.TryAdd(item);
                     if (success) totalValue += item.MarketValue * item.stackCount;
                     else if (!item.Destroyed) item.Destroy();

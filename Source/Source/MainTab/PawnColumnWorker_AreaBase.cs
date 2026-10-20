@@ -5,6 +5,8 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
+// need Waylith equivalents - UPDATE
+
 namespace Hospitality.MainTab
 {
     // Pretty much copied from PawnColumnWorker_AllowedArea
@@ -18,17 +20,17 @@ namespace Hospitality.MainTab
 
         public override int GetMinWidth(PawnTable table)
         {
-            return Mathf.Max(base.GetMinWidth(table), 200);
+            return Waylith.Math.Mathf.Max(base.GetMinWidth(table), 200);
         }
 
         public override int GetOptimalWidth(PawnTable table)
         {
-            return Mathf.Clamp(273, GetMinWidth(table), GetMaxWidth(table));
+            return Waylith.Math.Mathf.Clamp(273, GetMinWidth(table), GetMaxWidth(table));
         }
 
         public override int GetMinHeaderHeight(PawnTable table)
         {
-            return Mathf.Max(base.GetMinHeaderHeight(table), TopAreaHeight);
+            return Waylith.Math.Mathf.Max(base.GetMinHeaderHeight(table), TopAreaHeight);
         }
 
         public override void DoCell(Rect rect, Pawn pawn, PawnTable table)

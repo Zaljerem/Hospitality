@@ -41,7 +41,9 @@ namespace Hospitality.Patches
             [HarmonyPostfix]
             public static void Postfix(ref float __result, Pawn eater, Thing foodSource, ThingDef foodDef, float dist, bool takingToInventory = false)
             {
-                if (GuestUtility.IsGuest(eater) && foodSource is Building_NutrientPasteDispenser nutrientPasteDispenser)
+                // This postfix runs for ordinary food candidates too. Reject those before the
+                // guest/cache lookup; only paste dispensers can receive this price adjustment.
+                if (foodSource is Building_NutrientPasteDispenser nutrientPasteDispenser && GuestUtility.IsGuest(eater))
                 {
                     var comp = foodSource.TryGetComp<CompVendingMachine>();
                     if (comp != null && comp.IsActive())

@@ -3,6 +3,8 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
+// need Waylith equivalents - UPDATE
+
 namespace Hospitality.MainTab
 {
     internal class PawnColumnWorker_ShoppingArea : PawnColumnWorker_AreaBase

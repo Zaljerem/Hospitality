@@ -28,13 +28,16 @@ namespace Hospitality
             var silver = pawn.inventory.innerContainer.FirstOrDefault(i => i.def == ThingDefOf.Silver);
             var money = silver?.stackCount ?? 0;
 
-            var beds = pawn.MapHeld.GetGuestBeds(pawn.GetGuestArea()).ToArray();
-            if(beds.Length == 0) return ThoughtState.Inactive;
+            // This thought has no multi-tick cache interval. Avoid allocating a bed array and
+            // rescanning it each time; keep the distinct occupied/owned slot rules intact.
+            var hasUnoccupiedSlot = false;
+            foreach (var bed in pawn.MapHeld.GetGuestBeds(pawn.GetGuestArea()))
+            {
+                if (bed.RentalFee <= money && bed.AnyUnownedSleepingSlot) return ThoughtState.Inactive;
+                if (!hasUnoccupiedSlot && bed.AnyUnoccupiedSleepingSlot) hasUnoccupiedSlot = true;
+            }
 
-            if (!beds.Any(bed => bed.AnyUnoccupiedSleepingSlot)) return ThoughtState.Inactive;
-            if (beds.Any(bed => bed.RentalFee <= money && bed.AnyUnownedSleepingSlot)) return ThoughtState.Inactive;
-
-            return ThoughtState.ActiveDefault;
+            return hasUnoccupiedSlot ? ThoughtState.ActiveDefault : ThoughtState.Inactive;
         }
     }
 }

@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using RimWorld;
 using Verse;
@@ -8,14 +8,28 @@ namespace Hospitality.Utilities;
 
 internal static class RelationUtility
 {
-    private static readonly Dictionary<int, RelationInfo> relationCache = new();
+    // Pawn IDs are reused across saves. Key by the actual pawn without retaining discarded pawns.
+    private static readonly ConditionalWeakTable<Pawn, RelationInfo> relationCache = new();
+    private static Game cachedGame;
+
+    internal static void Reset()
+    {
+        relationCache.Clear();
+        cachedGame = Current.Game;
+    }
 
     public static RelationInfo GetRelationInfo(Pawn pawn)
     {
-        if (!relationCache.TryGetValue(pawn.thingIDNumber, out var info)) return CreateRelationInfo(pawn);
+        // Static table helpers outlive game instances, including loading an earlier save.
+        if (!ReferenceEquals(cachedGame, Current.Game))
+        {
+            Reset();
+        }
+        if (!relationCache.TryGetValue(pawn, out var info)) return CreateRelationInfo(pawn);
 
-        // Update infos twice per minute
-        if (GenTicks.TicksGame - GenTicks.TickLongInterval > info.lastUpdateTick) UpdateInfo(info, pawn);
+        // Retain the existing interval boundary; a backward tick movement needs a fresh result.
+        var elapsed = GenTicks.TicksGame - info.lastUpdateTick;
+        if (elapsed < 0 || elapsed > GenTicks.TickLongInterval) UpdateInfo(info, pawn);
 
         return info;
     }
@@ -24,27 +38,29 @@ internal static class RelationUtility
     {
         var info = new RelationInfo();
         UpdateInfo(info, guest);
-        relationCache.Add(guest.thingIDNumber, info);
+        relationCache.Add(guest, info);
         return info;
     }
 
     private static void UpdateInfo(RelationInfo info, Pawn guest)
     {
-        var relations = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_OfPlayerFaction.Where(p => p.relations != null).SelectMany(p => GetRelations(guest, p)).ToArray();
-        info.hasRelationship = relations.Length > 0;
-        info.lastUpdateTick = GenTicks.TicksGame;
+        // Format in source order without per-colonist projection iterators or a temporary array
+        // of relation structs. Keep the flag independent of translated tooltip text length.
+        var hasRelationship = false;
         var sb = new StringBuilder();
-        foreach (var relation in relations)
+        foreach (var colonist in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_OfPlayerFaction)
         {
-            sb.AppendLine("Relationship".Translate(relation.def.GetGenderSpecificLabelCap(guest), relation.colonist.Label, relation.colonist));
+            if (colonist.relations == null) continue;
+            foreach (var relationDef in colonist.GetRelations(guest))
+            {
+                hasRelationship = true;
+                sb.AppendLine("Relationship".Translate(relationDef.GetGenderSpecificLabelCap(guest), colonist.Label, colonist));
+            }
         }
 
         info.tooltip = sb.ToString();
-    }
-
-    private static IEnumerable<Relation> GetRelations(Pawn guest, Pawn p)
-    {
-        return p.GetRelations(guest).Select(relationDef => new Relation { colonist = p, def = relationDef });
+        info.hasRelationship = hasRelationship;
+        info.lastUpdateTick = GenTicks.TicksGame;
     }
 
     public class RelationInfo
@@ -54,9 +70,4 @@ internal static class RelationUtility
         public string tooltip;
     }
 
-    private struct Relation
-    {
-        public Pawn colonist;
-        public PawnRelationDef def;
-    }
 }

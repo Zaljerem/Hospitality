@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using UnityEngine;
 using Verse;
+using Waylith.Math;
 using Verse.AI.Group;
 
 namespace Hospitality
@@ -27,7 +27,7 @@ namespace Hospitality
             foreach (var pawn in pawns)
             {
                 pawn.pather.StopDead();
-                pawn.ClearMind();
+                pawn.ClearMind_NewTemp();
             }
         }
     }

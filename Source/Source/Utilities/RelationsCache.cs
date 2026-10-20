@@ -2,7 +2,7 @@
 using System.Linq;
 using JetBrains.Annotations;
 using RimWorld;
-using UnityEngine;
+using Waylith.Math;
 using Verse;
 
 namespace Hospitality.Utilities
@@ -36,27 +36,39 @@ namespace Hospitality.Utilities
 			return set;
 		}
 
+        public RelationsCacheSet RefreshFor(Pawn pawn)
+        {
+            // Explicit interaction callers need fresh before/after totals within the same tick.
+            // Leave ordinary UI queries throttled and refresh only this guest's relationship set.
+            TryUpdate();
+            if (!allCacheSets.TryGetValue(pawn, out var set)) allCacheSets.Add(pawn, set = new RelationsCacheSet(pawn));
+            set.TryUpdate(true);
+            return set;
+        }
+
         public void ForceImmediateUpdate()
         {
-            lastUpdateTick = 0; // Forces TryUpdate to succeed
-            TryUpdate();
+            // Bypass the throttle explicitly; tick zero is not an expired cache timestamp.
+            TryUpdate(true);
 
             foreach (var pawn in Map.mapPawns.AllPawns)
             {
                 if (pawn.IsGuest() && pawn.CompGuest() != null)
                 {
-                    GetSetFor(pawn); // This will call set.TryUpdate() for each guest
+                    if (!allCacheSets.TryGetValue(pawn, out var set)) allCacheSets.Add(pawn, set = new RelationsCacheSet(pawn));
+                    set.TryUpdate(true); // Existing per-guest entries must also bypass their throttle.
                 }
             }
         }
 
-        private void TryUpdate()
+        private void TryUpdate(bool force = false)
 		{
-			if (Current.Game.tickManager.TicksGame <= lastUpdateTick + 50) return;
+			if (!force && Current.Game.tickManager.TicksGame <= lastUpdateTick + 50) return;
 			lastUpdateTick = Current.Game.tickManager.TicksGame;
 
-			friendsRequired = GetFriendsRequired();
+			// Calculate the requirement from this refresh, rather than the previous colonist list.
 			UpdateColonistsFromBase();
+			friendsRequired = GetFriendsRequired();
 		}      
 
         private void UpdateColonistsFromBase()
@@ -77,7 +89,7 @@ namespace Hospitality.Utilities
 			var tile = p.GetRootTile();
 			if (tile == -1) return false;
 
-			return Find.WorldGrid.ApproxDistanceInTiles(mapHeld.Tile, tile) < 8; // within 3 tiles counts
+			return Find.WorldGrid.ApproxDistanceInTiles(mapHeld.Tile, tile) < 8; // Within 8 tiles counts; retain the existing gameplay distance.
 		}
 
 		private int GetFriendsRequired()
@@ -108,24 +120,45 @@ namespace Hospitality.Utilities
 				Pawn = pawn;
 			}
 
-			public void TryUpdate()
+			public void TryUpdate(bool force = false)
 			{
-				if (Current.Game.tickManager.TicksGame <= lastUpdateTick + 50 + Pawn.HashOffset() % 20) return; // Don't update everyone at once	
+				// Normal updates remain staggered; load-time refreshes can explicitly bypass this delay.
+				if (!force && Current.Game.tickManager.TicksGame <= lastUpdateTick + 50 + Pawn.HashOffset() % 20) return;
 				lastUpdateTick = Current.Game.tickManager.TicksGame;
 
 				var mapComponent = Pawn.GetMapComponent();
 				if (mapComponent == null) return;
 
-				enemies = mapComponent.RelationsCache.colonistsFromBase.Where(p => RelationsUtility.PawnsKnowEachOther(Pawn, p) && Pawn.relations.OpinionOf(p) <= GuestUtility.MaxOpinionForEnemy)
-					.Sum(p => GetRelationValue(p, Pawn));
-				enemiesSeniority = mapComponent.RelationsCache.colonistsFromBase
-					.Where(p => p.royalty?.MostSeniorTitle != null && RelationsUtility.PawnsKnowEachOther(Pawn, p) && Pawn.relations.OpinionOf(p) <= GuestUtility.MaxOpinionForEnemy)
-					.Sum(p => p.royalty.MostSeniorTitle.def.seniority + 100); // seniority can be 0!
 				float requiredOpinion = Pawn.GetMinRecruitOpinion();
-				friends = mapComponent.RelationsCache.colonistsFromBase.Where(p => RelationsUtility.PawnsKnowEachOther(Pawn, p) && Pawn.relations.OpinionOf(p) >= requiredOpinion).Sum(pawn => GetRelationValue(pawn, Pawn));
+				friends = friendsSeniority = enemies = enemiesSeniority = 0;
+				// One pass replaces four LINQ scans: knowledge and opinion are evaluated once per
+				// colonist, and relatedness once for a qualifying colonist. Keep both tests independent
+				// in case another mod makes the friend/enemy thresholds overlap.
+				foreach (var colonist in mapComponent.RelationsCache.colonistsFromBase)
+				{
+					if (!RelationsUtility.PawnsKnowEachOther(Pawn, colonist)) continue;
+					var opinion = Pawn.relations.OpinionOf(colonist);
+					var isEnemy = opinion <= GuestUtility.MaxOpinionForEnemy;
+					var isFriend = opinion >= requiredOpinion;
+					if (!isEnemy && !isFriend) continue;
 
-				friendsSeniority = mapComponent.RelationsCache.colonistsFromBase.Where(p => p.royalty?.MostSeniorTitle != null && RelationsUtility.PawnsKnowEachOther(Pawn, p) && Pawn.relations.OpinionOf(p) >= requiredOpinion)
-					.Sum(pawn => pawn.royalty.MostSeniorTitle.def.seniority + 100); // seriority can be 0!
+					var weight = GetRelationValue(colonist, Pawn);
+					var title = colonist.royalty?.MostSeniorTitle;
+					var seniority = title != null ? title.def.seniority + 100 : 0; // Seniority can be zero.
+					checked // Preserve Enumerable.Sum's overflow checking for accumulated totals.
+					{
+						if (isEnemy)
+						{
+							enemies += weight;
+							enemiesSeniority += seniority;
+						}
+						if (isFriend)
+						{
+							friends += weight;
+							friendsSeniority += seniority;
+						}
+					}
+				}
 			}         
 
             private static int GetRelationValue(Pawn pawn, Pawn guest)
