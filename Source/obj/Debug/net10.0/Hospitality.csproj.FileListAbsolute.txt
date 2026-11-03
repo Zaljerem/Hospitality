@@ -1,0 +1,10 @@
+C:\Codex\Hospitality\mod\bin\Debug\net10.0\Hospitality.deps.json
+C:\Codex\Hospitality\mod\bin\Debug\net10.0\Hospitality.dll
+C:\Codex\Hospitality\mod\bin\Debug\net10.0\Hospitality.pdb
+C:\Codex\Hospitality\mod\obj\Debug\net10.0\Hospitality.csproj.AssemblyReference.cache
+C:\Codex\Hospitality\mod\obj\Debug\net10.0\Hospitality.GeneratedMSBuildEditorConfig.editorconfig
+C:\Codex\Hospitality\mod\obj\Debug\net10.0\Hospitality.csproj.CoreCompileInputs.cache
+C:\Codex\Hospitality\mod\obj\Debug\net10.0\Hospitality.dll
+C:\Codex\Hospitality\mod\obj\Debug\net10.0\refint\Hospitality.dll
+C:\Codex\Hospitality\mod\obj\Debug\net10.0\Hospitality.pdb
+C:\Codex\Hospitality\mod\obj\Debug\net10.0\ref\Hospitality.dll

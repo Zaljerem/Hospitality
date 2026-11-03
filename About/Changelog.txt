@@ -45,3 +45,21 @@
 - Fixed Soft Warm Beds compatibility: bedding now survives conversion between normal and guest beds and displays correctly.
 - Fixed food-scrounging reservations blocking the food owner's meal.
 - Fixed food transfers taking incorrect quantities or merging with nearby ground stacks, and respected guests' carrying limits. **Thanks to mrbeverage for these scrounging fixes!**
+
+1.1.8 - 11/1/2026
+
+- Fixed the default guest area changing from Unrestricted to Home when saving or loading.
+- Fixed factions that cannot send peaceful visitors consuming guest scheduling slots and delaying valid visits.
+- Fixed Spaceports replacement pickups being requested for guests who had already boarded or left on a recalled shuttle.
+- Suppressed guest temperature warnings on space maps, including Odyssey orbital sites with other biomes.
+- Fixed Spaceports treating newly recovered guests as incoming shuttle arrivals.
+- Improved Spaceports compatibility for guest recruitment and boarding, and arranged separate pickup shuttles for recovered travelers in orbit.
+- Orbital guests now retry unavailable Spaceports pickups and receive a replacement if their shuttle is destroyed.
+- Fixed orbital guest arrivals during Kessler storms; eligible orbital arrivals still bypass Spaceports' shuttle percentage.
+- Recovered travelers now start their own guest visit instead of joining an existing group. 
+- Reduced repeated stat calculations while selecting guest beds with no resolved room.
+- Improved Ideology guest-bed search performance by reusing facility requirements within each search.
+- Reduced vending-machine cache overhead during item spawning and improved cleanup of discarded maps and duplicate registrations.
+- Fixed stale relationship icons and tooltips after switching saves, and reduced allocations when refreshing the guest table.
+- Fixed guest bed and food thoughts occasionally reusing another pawn's cached result, and improved cache cleanup between games.
+
