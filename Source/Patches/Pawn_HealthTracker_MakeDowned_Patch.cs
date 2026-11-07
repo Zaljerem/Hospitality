@@ -17,7 +17,7 @@ internal static class Pawn_HealthTracker_MakeDowned_Patch
         if (ShouldDrop(pawn))
         {
             // Run original code
-            pawn.DropAndForbidEverything(keepInventoryAndEquipmentIfInBed);
+            pawn.DropAndForbidEverything(keepInventoryAndEquipmentIfInBed, rememberPrimary);
         }
 
         // Is not hostile, do nothing
@@ -35,7 +35,7 @@ internal static class Pawn_HealthTracker_MakeDowned_Patch
         if (ShouldDrop(equipment.pawn))
         {
             // Run original code
-            equipment.DropAllEquipment(pos, forbid);
+            equipment.DropAllEquipment(pos, forbid, rememberPrimary);
         }
 
         // Is not hostile, do nothing
