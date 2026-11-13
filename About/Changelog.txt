@@ -63,3 +63,9 @@
 - Fixed stale relationship icons and tooltips after switching saves, and reduced allocations when refreshing the guest table.
 - Fixed guest bed and food thoughts occasionally reusing another pawn's cached result, and improved cache cleanup between games.
 
+1.1.9 - 11/12/2026
+
+- Fix to Russian translation, thanks Antyhc!
+- Fixed reloaded guests sometimes using stale guest data from the previous game, which could cause faction-relation errors during bed checks, thanks ZadesSC!
+- Restored downed pawns remembering their dropped weapons so they can retrieve them after recovering. Thanks to mrbeverage!
+
