@@ -36,7 +36,7 @@
   <!-- EN: involuntarily recruited -->
   <GuestRecruitmentForced.stages.involuntarily_recruited.label>принудительная вербовка</GuestRecruitmentForced.stages.involuntarily_recruited.label>
   <!-- EN: I'm not sure if I should be here. -->
-  <GuestRecruitmentForced.stages.involuntarily_recruited.description>Не знаю, нужно ли мне тут быть..</GuestRecruitmentForced.stages.involuntarily_recruited.description>
+  <GuestRecruitmentForced.stages.involuntarily_recruited.description>Не знаю, стоит ли мне здесь оставаться.</GuestRecruitmentForced.stages.involuntarily_recruited.description>
   <!-- EN: insulted by colonist -->
   <GuestOffendedRelationship.stages.insulted_by_colonist.label>оскорбление от поселенца</GuestOffendedRelationship.stages.insulted_by_colonist.label>
   <!-- EN: insulted me -->
@@ -56,7 +56,7 @@
   <!-- EN: This person was recommended to me. -->
   <EndorsedByRecruiter.stages.endorsed_by_recruiter.description>Мне порекомендовали этого человека.</EndorsedByRecruiter.stages.endorsed_by_recruiter.description>
   <!-- EN: tired of talking -->
-  <GuestDismissiveAttitude.stages.tired_of_talking.label>много разговоров</GuestDismissiveAttitude.stages.tired_of_talking.label>
+  <GuestDismissiveAttitude.stages.tired_of_talking.label>усталость от разговоров</GuestDismissiveAttitude.stages.tired_of_talking.label>
   <!-- EN: I'm done talking for now. Leave me alone. -->
   <GuestDismissiveAttitude.stages.tired_of_talking.description>Сколько можно разговаривать. Оставьте меня в покое.</GuestDismissiveAttitude.stages.tired_of_talking.description>
   <!-- EN: expensive food -->
