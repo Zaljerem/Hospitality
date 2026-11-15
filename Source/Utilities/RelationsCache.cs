@@ -51,7 +51,7 @@ namespace Hospitality.Utilities
             // Bypass the throttle explicitly; tick zero is not an expired cache timestamp.
             TryUpdate(true);
 
-            foreach (var pawn in Map.mapPawns.AllPawns)
+            foreach (var pawn in Map.mapPawns.AllPawns.ToArray())
             {
                 if (pawn.IsGuest() && pawn.CompGuest() != null)
                 {
